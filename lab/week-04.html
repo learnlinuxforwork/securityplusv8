@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 4: Threat Vectors and Attack Surfaces — CompTIA Security+ SY0-801 V8 Course</title>
+<meta name="description" content="Every way in — message, image, browser, network, supply chain, physical, and signal-based.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .lab-wrap { max-width: 860px; margin: 0 auto; padding: 30px 22px 90px; }
+  .lab-back { font-size: 13px; color: var(--text-3); display: inline-block; margin-bottom: 18px; }
+  .lab-h { margin-bottom: 22px; }
+  .lab-h h1 { font-size: 27px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .lab-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .step { margin: 30px 0 0; }
+  .step h2 { font-size: 17px; margin-bottom: 6px; }
+  .step > p { color: var(--text-2); font-size: 14px; max-width: 72ch; }
+  .cmd { margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius);
+          overflow: hidden; background: var(--bg-elev); box-shadow: var(--shadow); }
+  .cmd__t { font-size: 12.5px; font-weight: 600; color: var(--text-2);
+             padding: 9px 14px; background: var(--bg-sunken); border-bottom: 1px solid var(--border); }
+  .cmd pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--mono);
+              font-size: 12.8px; line-height: 1.65; color: var(--text); }
+  .lab-nav { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); }
+  ol.verify { font-family: var(--mono); font-size: 12.8px; }
+  ol.verify li { margin-bottom: 6px; color: var(--text-2); }
+  @media print { .lab-back, .lab-nav, .header { display: none !important; } }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("secplus.theme.v1");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="brand__mark brand__mark--logo"><img src="../assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="24" height="24"></span>
+    <span class="brand__text">
+      <span class="brand__title">Security+ V8 Course</span>
+      <span class="brand__sub">From Learn Linux For Work · Lab 4 of 15</span>
+    </span>
+  </a>
+  <span class="header__spacer"></span>
+  <button class="btn btn--icon" data-theme-toggle title="Toggle dark / light mode" aria-label="Toggle dark or light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<div class="lab-wrap">
+  <a class="lab-back" href="../index.html#week-04">&larr; Back to Week 4</a>
+
+  <div class="lab-h">
+    <div class="section__eyebrow">Lab guide 4</div>
+    <h1>Threat Vectors and Attack Surfaces</h1>
+    <p style="color:var(--text-2);font-size:14.5px;max-width:74ch">Every way in — message, image, browser, network, supply chain, physical, and signal-based.</p>
+    <div class="lab-meta">
+      <span class="chip chip--accent">8-10 hours</span>
+      <span class="chip">Week 3 complete</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout__title">Before you start</div><ul><li>secure-target and kali-tools VMs up</li></ul></div>
+
+  <div class="step"><h2>1. Message-, image-, and attachment-based vectors</h2><p><strong>Message-based</strong> covers email, SMS, RCS, instant messaging, and collaboration tools — the classic phishing surface, now spread across a lot more than just email. <strong>Image-based</strong> vectors are sneakier: a malicious QR code, embedded content inside an image, or an abused CAPTCHA flow. <strong>Attachment-based</strong> vectors hide payloads in embedded macros, RTF documents, and even PDFs — file formats people trust by default.</p></div><div class="step"><h2>2. Browser-, network-, and remote-access-based vectors</h2><p><strong>Browser-based</strong>: malicious extensions, injected JavaScript, stolen cookies and session tokens. <strong>Network-based</strong>: compromised infrastructure devices, virtualized devices, stolen session keys. <strong>Remote access</strong>: abused RDP, VNC, or VPN sessions — legitimate remote-access tools turned against you are one of the most common real-world footholds.</p></div><div class="step"><h2>3. Firewall a vector shut, and see what it does and doesn't stop</h2><p>One rule, one clear boundary.</p><div class="cmd"><div class="cmd__t">Block inbound traffic to a port on secure-target, then confirm from kali-tools</div><pre># On secure-target:
+sudo firewall-cmd --add-port=8080/tcp --permanent 2>/dev/null; sudo firewall-cmd --reload 2>/dev/null || sudo ufw deny 8080/tcp
+sudo firewall-cmd --list-ports 2>/dev/null || sudo ufw status</pre></div><div class="cmd"><div class="cmd__t">From kali-tools, confirm the port is no longer reachable, but SSH still is</div><pre>nmap -p 22,8080 secure-target.lab</pre></div></div><div class="step"><h2>4. Endpoint-, supply chain-, and external media-based vectors</h2><p><strong>Endpoint-based</strong> covers every device type (mobile, workstation, server, tablet) and a sneaky category: <strong>living-off-the-land tools</strong> — an attacker using tools already trusted and present on the system (bash, curl, cron, built-in scripting utilities) instead of dropping obvious malware. <strong>Supply chain-based</strong> means the compromise comes through a third-party provider, MSP, logistics provider, or SaaS vendor you trust — the SolarWinds and similar incidents live here. <strong>External media-based</strong> is the classic malicious USB drop.</p></div><div class="step"><h2>5. Human-, IoT-, OT-, physical-, and signal-based vectors</h2><p><strong>Human-based</strong>: impersonation (posing as a contractor or visitor), a watering-hole attack (compromising a site your target already visits). <strong>IoT-based</strong>: cameras, sensors, printers — often shipped with default credentials and never patched. <strong>OT-based</strong> (operational technology) covers industrial control systems. <strong>Physical-based</strong>: lock and key, access vestibules, access passes. <strong>Signal-based</strong>: Bluetooth, RF, and NFC — short-range but real, especially against badge and payment systems.</p></div>
+
+  <div class="step"><h2>Check your work</h2><p>Run these before you consider the lab finished.</p><ol class="verify"><li>nmap -p 8080 secure-target.lab shows the port closed/filtered</li><li>nmap -p 22 secure-target.lab shows ssh still reachable</li><li>You can name all 12 threat vector categories from memory and give one real example of each</li></ol></div>
+
+  
+
+  <div class="lab-nav">
+    <span><a class="btn" href="week-03.html">&larr; Lab 3</a></span>
+    <span><a class="btn btn--primary" href="week-05.html">Lab 5 &rarr;</a></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><strong>CompTIA Security+ SY0-801 V8 Course</strong> — securityplusv8.learnlinuxforwork.com<br>
+    Written by Shea. Licensed under the
+    <a href="https://learnlinuxforwork.com/license" target="_blank" rel="noopener noreferrer">GNU AGPL v3.0 or later</a>.</div>
+    <div class="footer__links">
+      <a href="../index.html">Course home</a>
+      <a href="https://www.learnlinuxforwork.com" target="_blank" rel="noopener noreferrer">Linux training</a>
+      <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">CompTIA objectives</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lab.js"></script>
+</body>
+</html>

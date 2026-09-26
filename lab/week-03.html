@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 3: Threat Characteristics and Threat Actors — CompTIA Security+ SY0-801 V8 Course</title>
+<meta name="description" content="Who's attacking, why, and how you'd actually know a threat is credible.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .lab-wrap { max-width: 860px; margin: 0 auto; padding: 30px 22px 90px; }
+  .lab-back { font-size: 13px; color: var(--text-3); display: inline-block; margin-bottom: 18px; }
+  .lab-h { margin-bottom: 22px; }
+  .lab-h h1 { font-size: 27px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .lab-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .step { margin: 30px 0 0; }
+  .step h2 { font-size: 17px; margin-bottom: 6px; }
+  .step > p { color: var(--text-2); font-size: 14px; max-width: 72ch; }
+  .cmd { margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius);
+          overflow: hidden; background: var(--bg-elev); box-shadow: var(--shadow); }
+  .cmd__t { font-size: 12.5px; font-weight: 600; color: var(--text-2);
+             padding: 9px 14px; background: var(--bg-sunken); border-bottom: 1px solid var(--border); }
+  .cmd pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--mono);
+              font-size: 12.8px; line-height: 1.65; color: var(--text); }
+  .lab-nav { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); }
+  ol.verify { font-family: var(--mono); font-size: 12.8px; }
+  ol.verify li { margin-bottom: 6px; color: var(--text-2); }
+  @media print { .lab-back, .lab-nav, .header { display: none !important; } }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("secplus.theme.v1");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="brand__mark brand__mark--logo"><img src="../assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="24" height="24"></span>
+    <span class="brand__text">
+      <span class="brand__title">Security+ V8 Course</span>
+      <span class="brand__sub">From Learn Linux For Work · Lab 3 of 15</span>
+    </span>
+  </a>
+  <span class="header__spacer"></span>
+  <button class="btn btn--icon" data-theme-toggle title="Toggle dark / light mode" aria-label="Toggle dark or light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<div class="lab-wrap">
+  <a class="lab-back" href="../index.html#week-03">&larr; Back to Week 3</a>
+
+  <div class="lab-h">
+    <div class="section__eyebrow">Lab guide 3</div>
+    <h1>Threat Characteristics and Threat Actors</h1>
+    <p style="color:var(--text-2);font-size:14.5px;max-width:74ch">Who's attacking, why, and how you'd actually know a threat is credible.</p>
+    <div class="lab-meta">
+      <span class="chip chip--accent">8-10 hours</span>
+      <span class="chip">Week 2 complete</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout__title">Before you start</div><ul><li>secure-target and kali-tools VMs both up, on the same isolated host-only network</li></ul></div>
+
+  <div class="step"><h2>1. Threats vs. vulnerabilities — the difference that matters</h2><p>A <strong>vulnerability</strong> is a weakness. A <strong>threat</strong> is something that could exploit it. An unpatched web server is a vulnerability whether or not anyone ever attacks it; a threat actor scanning the internet for that exact vulnerability is the threat. Risk is what happens when the two meet.</p></div><div class="step"><h2>2. Look up a real CVE and read its CVSS score</h2><p>The Common Vulnerabilities and Exposures database and the Common Vulnerability Scoring System are how the industry talks about severity precisely instead of vaguely.</p><div class="cmd"><div class="cmd__t">Pull a specific CVE's details (requires internet access from your normal machine, not the isolated lab network)</div><pre># In a browser: https://nvd.nist.gov/vuln/detail/CVE-2021-44228
+# Note the CVSS base score and vector string (AV/AC/PR/UI/S/C/I/A) — that string IS the score, decoded.</pre></div></div><div class="step"><h2>3. Threat feeds, likelihood, impact, and life cycle</h2><p>A <strong>threat feed</strong> is a subscribed source of current, active threat data — IPs, domains, hashes seen in real attacks. Prioritizing what to act on combines <strong>likelihood</strong> (how probable is this against us specifically) with <strong>impact</strong> (how bad if it happens). A threat has a <strong>life cycle</strong> too: it's discovered, weaponized, deployed, and eventually becomes commodity/well-defended — timing your defenses against where a threat sits in that cycle matters.</p></div><div class="step"><h2>4. Eight threat actor types, matched to motivation</h2><p>Match each actor to its typical driver: <strong>organized crime</strong> (financial), <strong>state-sponsored</strong> (espionage, political), <strong>hacktivist</strong> (ideological, political), <strong>insider</strong> (varies — financial, revenge, or accidental/unintentional with no malicious motive at all), <strong>unskilled attacker</strong> (notoriety, curiosity — low sophistication but not zero risk), <strong>terrorist</strong> (fear/chaos, ideological), <strong>competitor</strong> (intellectual property, financial). Two attributes cut across all of them: <strong>internal vs. external</strong>, and <strong>level of sophistication/resources</strong> — a state-sponsored actor and an unskilled attacker can pursue the same target with wildly different capability.</p></div><div class="step"><h2>5. See an unauthenticated scan from the attacker's side</h2><p>A quick, safe demonstration of reconnaissance — the first thing almost any threat actor does.</p><div class="cmd"><div class="cmd__t">From kali-tools, discover what secure-target exposes (your own isolated lab network only)</div><pre>nmap -sV secure-target.lab   # or its lab IP address
+# Read the output: every open port is a piece of your attack surface an actor now knows about</pre></div></div>
+
+  <div class="step"><h2>Check your work</h2><p>Run these before you consider the lab finished.</p><ol class="verify"><li>nmap output shows at least one open port on secure-target (likely ssh)</li><li>You can name the motivation most associated with each of the eight threat actor types, without notes</li><li>You can explain, in one sentence, what CVSS's base score represents</li></ol></div>
+
+  
+
+  <div class="lab-nav">
+    <span><a class="btn" href="week-02.html">&larr; Lab 2</a></span>
+    <span><a class="btn btn--primary" href="week-04.html">Lab 4 &rarr;</a></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><strong>CompTIA Security+ SY0-801 V8 Course</strong> — securityplusv8.learnlinuxforwork.com<br>
+    Written by Shea. Licensed under the
+    <a href="https://learnlinuxforwork.com/license" target="_blank" rel="noopener noreferrer">GNU AGPL v3.0 or later</a>.</div>
+    <div class="footer__links">
+      <a href="../index.html">Course home</a>
+      <a href="https://www.learnlinuxforwork.com" target="_blank" rel="noopener noreferrer">Linux training</a>
+      <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">CompTIA objectives</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lab.js"></script>
+</body>
+</html>

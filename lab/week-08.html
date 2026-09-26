@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 8: Data Protection, Resilience, and Recovery — CompTIA Security+ SY0-801 V8 Course</title>
+<meta name="description" content="Protecting data at rest, in transit, and in use — then making sure the whole environment survives a bad day.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .lab-wrap { max-width: 860px; margin: 0 auto; padding: 30px 22px 90px; }
+  .lab-back { font-size: 13px; color: var(--text-3); display: inline-block; margin-bottom: 18px; }
+  .lab-h { margin-bottom: 22px; }
+  .lab-h h1 { font-size: 27px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .lab-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .step { margin: 30px 0 0; }
+  .step h2 { font-size: 17px; margin-bottom: 6px; }
+  .step > p { color: var(--text-2); font-size: 14px; max-width: 72ch; }
+  .cmd { margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius);
+          overflow: hidden; background: var(--bg-elev); box-shadow: var(--shadow); }
+  .cmd__t { font-size: 12.5px; font-weight: 600; color: var(--text-2);
+             padding: 9px 14px; background: var(--bg-sunken); border-bottom: 1px solid var(--border); }
+  .cmd pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--mono);
+              font-size: 12.8px; line-height: 1.65; color: var(--text); }
+  .lab-nav { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); }
+  ol.verify { font-family: var(--mono); font-size: 12.8px; }
+  ol.verify li { margin-bottom: 6px; color: var(--text-2); }
+  @media print { .lab-back, .lab-nav, .header { display: none !important; } }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("secplus.theme.v1");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="brand__mark brand__mark--logo"><img src="../assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="24" height="24"></span>
+    <span class="brand__text">
+      <span class="brand__title">Security+ V8 Course</span>
+      <span class="brand__sub">From Learn Linux For Work · Lab 8 of 15</span>
+    </span>
+  </a>
+  <span class="header__spacer"></span>
+  <button class="btn btn--icon" data-theme-toggle title="Toggle dark / light mode" aria-label="Toggle dark or light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<div class="lab-wrap">
+  <a class="lab-back" href="../index.html#week-08">&larr; Back to Week 8</a>
+
+  <div class="lab-h">
+    <div class="section__eyebrow">Lab guide 8</div>
+    <h1>Data Protection, Resilience, and Recovery</h1>
+    <p style="color:var(--text-2);font-size:14.5px;max-width:74ch">Protecting data at rest, in transit, and in use — then making sure the whole environment survives a bad day.</p>
+    <div class="lab-meta">
+      <span class="chip chip--accent">10-12 hours</span>
+      <span class="chip">Week 7 complete</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout__title">Before you start</div><ul><li>secure-target VM up</li></ul></div>
+
+  <div class="step"><h2>1. Data states and classification</h2><p>Data exists in three states, each needing a different protection: <strong>at rest</strong> (encrypted disk/database), <strong>in transit</strong> (TLS), and <strong>in use</strong> (harder — protections here include secure enclaves and careful memory handling). CompTIA's classification scale runs roughly: <strong>public</strong>, <strong>confidential</strong>, <strong>sensitive</strong>, <strong>critical</strong>, <strong>restricted</strong>, <strong>secret</strong>, <strong>top secret</strong> — the exact labels an organization uses vary, but the principle is the same: not all data deserves the same protection budget.</p></div><div class="step"><h2>2. Mask, hash, and tokenize a sample dataset</h2><p>Three different ways to protect data that look similar but solve different problems.</p><div class="cmd"><div class="cmd__t">Masking — hide part of the value, reversible by design if you keep the mapping</div><pre>echo '4111-1111-1111-1234' | sed -E 's/[0-9]{4}-[0-9]{4}-[0-9]{4}/****-****-****/'</pre></div><div class="cmd"><div class="cmd__t">Hashing — one-way, good for verifying integrity or storing passwords</div><pre>echo -n 'sensitive-record-42' | sha256sum</pre></div><div class="cmd"><div class="cmd__t">Tokenization — replace with a reference value that means nothing outside your own vault</div><pre>echo 'Original: account 4111111111111234 -> Token: TOK_9f8e7d6c5b4a'</pre></div></div><div class="step"><h2>3. Data protection roles</h2><p><strong>Data owner</strong>: accountable for the data's classification and protection, usually a business role. <strong>Data custodian</strong>: implements the technical controls the owner requires. <strong>Data steward</strong>: manages data quality and usage policy day-to-day. <strong>Data controller</strong> (a legal/privacy term): decides why and how data is processed. <strong>Data processor/subprocessor</strong>: processes data on the controller's behalf, under contract. In a data breach, these are exactly the roles regulators ask you to name.</p></div><div class="step"><h2>4. Data handling: geofencing, marking, and the data lifecycle</h2><p><strong>Marking and labeling</strong> makes classification visible (a document header, a metadata tag). <strong>Geofencing</strong> restricts where data can be accessed from or where it's allowed to reside — directly relevant to data sovereignty requirements. The full <strong>data management life cycle</strong> — creation, management, distribution, retention, and disposal — means "secure" isn't a one-time state; data needs protection differently at each stage, including secure disposal at the end.</p></div><div class="step"><h2>5. Calculate recovery metrics from a scenario</h2><p>Four acronyms that get tested constantly, worked from real numbers.</p><div class="cmd"><div class="cmd__t">Given: an outage started at 09:00, was detected at 09:15, restored at 11:00, last good backup was 08:00</div><pre># RTO (target max downtime) is a PLANNING number set in advance, e.g. RTO = 2 hours -> this outage (2h) just met it
+# RPO (max acceptable data loss) is also planned, e.g. RPO = 1 hour -> actual data loss here was 1 hour (08:00 backup to 09:00 outage) -> met it
+# MTTR here = 11:00 - 09:15 (detection to restore) = 1h45m
+# MTBF needs multiple incidents over time to calculate — it's an average, not a single-incident number</pre></div></div><div class="step"><h2>6. Site considerations and redundancy</h2><p>A <strong>hot site</strong> is fully operational and ready to fail over to immediately — expensive, fastest recovery. A <strong>warm site</strong> has infrastructure but needs some setup. A <strong>cold site</strong> has space and power only — cheapest, slowest recovery. Redundancy strategies — <strong>load balancing</strong>, <strong>clustering</strong>, <strong>autoscaling</strong>, <strong>high availability</strong> configurations, and layered power protection (<strong>UPS</strong> for short outages, a <strong>generator</strong> for long ones, a <strong>surge protector</strong> against spikes) — exist to avoid needing the recovery site at all.</p></div>
+
+  <div class="step"><h2>Check your work</h2><p>Run these before you consider the lab finished.</p><ol class="verify"><li>You produced masked, hashed, and tokenized versions of the same sample value and can explain when you'd use each</li><li>You can name all six data protection roles and what each is accountable for</li><li>You correctly calculated RTO/RPO status and MTTR from the sample scenario</li></ol></div>
+
+  
+
+  <div class="lab-nav">
+    <span><a class="btn" href="week-07.html">&larr; Lab 7</a></span>
+    <span><a class="btn btn--primary" href="week-09.html">Lab 9 &rarr;</a></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><strong>CompTIA Security+ SY0-801 V8 Course</strong> — securityplusv8.learnlinuxforwork.com<br>
+    Written by Shea. Licensed under the
+    <a href="https://learnlinuxforwork.com/license" target="_blank" rel="noopener noreferrer">GNU AGPL v3.0 or later</a>.</div>
+    <div class="footer__links">
+      <a href="../index.html">Course home</a>
+      <a href="https://www.learnlinuxforwork.com" target="_blank" rel="noopener noreferrer">Linux training</a>
+      <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">CompTIA objectives</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lab.js"></script>
+</body>
+</html>

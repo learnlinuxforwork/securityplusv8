@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 14: Compliance, Audits, and Security Awareness — CompTIA Security+ SY0-801 V8 Course</title>
+<meta name="description" content="The last content week — proving you're compliant, testing that you actually are, and teaching everyone else.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .lab-wrap { max-width: 860px; margin: 0 auto; padding: 30px 22px 90px; }
+  .lab-back { font-size: 13px; color: var(--text-3); display: inline-block; margin-bottom: 18px; }
+  .lab-h { margin-bottom: 22px; }
+  .lab-h h1 { font-size: 27px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .lab-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .step { margin: 30px 0 0; }
+  .step h2 { font-size: 17px; margin-bottom: 6px; }
+  .step > p { color: var(--text-2); font-size: 14px; max-width: 72ch; }
+  .cmd { margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius);
+          overflow: hidden; background: var(--bg-elev); box-shadow: var(--shadow); }
+  .cmd__t { font-size: 12.5px; font-weight: 600; color: var(--text-2);
+             padding: 9px 14px; background: var(--bg-sunken); border-bottom: 1px solid var(--border); }
+  .cmd pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--mono);
+              font-size: 12.8px; line-height: 1.65; color: var(--text); }
+  .lab-nav { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); }
+  ol.verify { font-family: var(--mono); font-size: 12.8px; }
+  ol.verify li { margin-bottom: 6px; color: var(--text-2); }
+  @media print { .lab-back, .lab-nav, .header { display: none !important; } }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("secplus.theme.v1");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="brand__mark brand__mark--logo"><img src="../assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="24" height="24"></span>
+    <span class="brand__text">
+      <span class="brand__title">Security+ V8 Course</span>
+      <span class="brand__sub">From Learn Linux For Work · Lab 14 of 15</span>
+    </span>
+  </a>
+  <span class="header__spacer"></span>
+  <button class="btn btn--icon" data-theme-toggle title="Toggle dark / light mode" aria-label="Toggle dark or light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<div class="lab-wrap">
+  <a class="lab-back" href="../index.html#week-14">&larr; Back to Week 14</a>
+
+  <div class="lab-h">
+    <div class="section__eyebrow">Lab guide 14</div>
+    <h1>Compliance, Audits, and Security Awareness</h1>
+    <p style="color:var(--text-2);font-size:14.5px;max-width:74ch">The last content week — proving you're compliant, testing that you actually are, and teaching everyone else.</p>
+    <div class="lab-meta">
+      <span class="chip chip--accent">8-10 hours</span>
+      <span class="chip">Week 13 complete</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout__title">Before you start</div><ul><li>No lab VM needed this week — reading, scenario practice, and one design exercise</li></ul></div>
+
+  <div class="step"><h2>1. Consequences of non-compliance</h2><p>Non-compliance isn't abstract: <strong>reputational</strong> damage (customer trust, press coverage), <strong>financial</strong> penalties (regulatory fines, which can be enormous under frameworks like GDPR), <strong>legal</strong> exposure (lawsuits), <strong>contractual</strong> breach (losing a customer contract that required certain controls), <strong>sanctions</strong>, and in extreme cases <strong>loss of license</strong> to operate in a given industry at all. Each has a different owner in the organization who cares most about it — which is exactly why compliance work touches every department.</p></div><div class="step"><h2>2. Privacy concepts: controller, processor, and individual rights</h2><p>A <strong>data controller</strong> decides why and how personal data is processed; a <strong>data processor</strong> processes it on the controller's behalf, under contract. <strong>Right to be forgotten</strong> lets an individual request deletion of their data. <strong>Opt-in vs. opt-out</strong> describes the default consent posture (opt-in is more protective of the individual). <strong>Data correction</strong> and <strong>processing restriction/prevention</strong> are additional rights an individual can exercise — these show up constantly in scenario questions phrased as "a customer requests X, what regulation/right applies?"</p></div><div class="step"><h2>3. Distinguish known, unknown, and partially known pen tests</h2><p>A scoping decision that changes everything about how a test runs.</p><div class="cmd"><div class="cmd__t">Write out the three scopes in your own words, with a scenario for each</div><pre>cat > ~/secplus-lab/pentest-scopes.txt <<'EOF'
+Known environment: tester has full documentation/access up front - tests defenses assuming an insider or well-documented attacker
+Unknown environment: tester starts with zero information - simulates a real external attacker from scratch
+Partially known: tester has some info (e.g. IP ranges) but not full access - the realistic middle ground most real engagements use
+EOF
+cat ~/secplus-lab/pentest-scopes.txt</pre></div></div><div class="step"><h2>4. MITRE ATT&amp;CK and the Cyber Kill Chain — two different models</h2><p>The <strong>Cyber Kill Chain</strong> describes an attack as a linear sequence of stages (reconnaissance through actions on objectives) — useful for thinking about where in a sequence to interrupt an attack. <strong>MITRE ATT&CK</strong> is a much more granular, non-linear matrix of specific real-world tactics and techniques, used heavily for threat intelligence and detection engineering. The <strong>Diamond Model</strong> frames an intrusion as four connected points: adversary, capability, infrastructure, and victim. All three are reference models for the same underlying problem — knowing when each is the right tool matters more than memorizing their stage names.</p></div><div class="step"><h2>5. Design a security awareness training outline</h2><p>The deliverable this domain has been building toward — you're the one designing the training now, not just taking it.</p><div class="cmd"><div class="cmd__t">A one-page outline for a sample organization</div><pre>cat > ~/secplus-lab/awareness-outline.txt <<'EOF'
+Initial/onboarding: phishing recognition, password policy, acceptable use - day 1
+Ongoing: quarterly phishing simulation + 15-min refresher
+Targeted: extra fraud-prevention training for Finance/AP staff specifically
+Corrective: mandatory 1:1 retraining for anyone who clicks a simulated phish
+Delivery: LMS for initial/ongoing, one-to-one for corrective
+Metrics: click-rate on simulations, completion rate, time-to-report a real phish
+EOF
+cat ~/secplus-lab/awareness-outline.txt</pre></div></div>
+
+  <div class="step"><h2>Check your work</h2><p>Run these before you consider the lab finished.</p><ol class="verify"><li>pentest-scopes.txt correctly distinguishes all three environments</li><li>awareness-outline.txt covers all four training types with a delivery mechanism and at least one metric</li><li>You can explain the difference between a data controller and processor with a concrete example of each</li><li>You can name all three reference models (Cyber Kill Chain, MITRE ATT&amp;CK, Diamond Model) and one thing each is best used for</li></ol></div>
+
+  
+
+  <div class="lab-nav">
+    <span><a class="btn" href="week-13.html">&larr; Lab 13</a></span>
+    <span><a class="btn btn--primary" href="week-15.html">Lab 15 &rarr;</a></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><strong>CompTIA Security+ SY0-801 V8 Course</strong> — securityplusv8.learnlinuxforwork.com<br>
+    Written by Shea. Licensed under the
+    <a href="https://learnlinuxforwork.com/license" target="_blank" rel="noopener noreferrer">GNU AGPL v3.0 or later</a>.</div>
+    <div class="footer__links">
+      <a href="../index.html">Course home</a>
+      <a href="https://www.learnlinuxforwork.com" target="_blank" rel="noopener noreferrer">Linux training</a>
+      <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">CompTIA objectives</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lab.js"></script>
+</body>
+</html>

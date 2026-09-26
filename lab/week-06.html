@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 6: Indicators of Malicious Activity — CompTIA Security+ SY0-801 V8 Course</title>
+<meta name="description" content="The biggest single objective in the exam. Malware families, network attacks, social engineering, and how to read an indicator of compromise.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .lab-wrap { max-width: 860px; margin: 0 auto; padding: 30px 22px 90px; }
+  .lab-back { font-size: 13px; color: var(--text-3); display: inline-block; margin-bottom: 18px; }
+  .lab-h { margin-bottom: 22px; }
+  .lab-h h1 { font-size: 27px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .lab-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .step { margin: 30px 0 0; }
+  .step h2 { font-size: 17px; margin-bottom: 6px; }
+  .step > p { color: var(--text-2); font-size: 14px; max-width: 72ch; }
+  .cmd { margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius);
+          overflow: hidden; background: var(--bg-elev); box-shadow: var(--shadow); }
+  .cmd__t { font-size: 12.5px; font-weight: 600; color: var(--text-2);
+             padding: 9px 14px; background: var(--bg-sunken); border-bottom: 1px solid var(--border); }
+  .cmd pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--mono);
+              font-size: 12.8px; line-height: 1.65; color: var(--text); }
+  .lab-nav { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); }
+  ol.verify { font-family: var(--mono); font-size: 12.8px; }
+  ol.verify li { margin-bottom: 6px; color: var(--text-2); }
+  @media print { .lab-back, .lab-nav, .header { display: none !important; } }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("secplus.theme.v1");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="brand__mark brand__mark--logo"><img src="../assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="24" height="24"></span>
+    <span class="brand__text">
+      <span class="brand__title">Security+ V8 Course</span>
+      <span class="brand__sub">From Learn Linux For Work · Lab 6 of 15</span>
+    </span>
+  </a>
+  <span class="header__spacer"></span>
+  <button class="btn btn--icon" data-theme-toggle title="Toggle dark / light mode" aria-label="Toggle dark or light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<div class="lab-wrap">
+  <a class="lab-back" href="../index.html#week-06">&larr; Back to Week 6</a>
+
+  <div class="lab-h">
+    <div class="section__eyebrow">Lab guide 6</div>
+    <h1>Indicators of Malicious Activity</h1>
+    <p style="color:var(--text-2);font-size:14.5px;max-width:74ch">The biggest single objective in the exam. Malware families, network attacks, social engineering, and how to read an indicator of compromise.</p>
+    <div class="lab-meta">
+      <span class="chip chip--accent">10-12 hours</span>
+      <span class="chip">Week 5 complete</span>
+    </div>
+  </div>
+
+  <div class="callout callout--warn"><div class="callout__title">Before you start</div><ul><li>secure-target and kali-tools on the SAME isolated, host-only network — no bridge to your real network or the internet</li><li>This week's traffic-capture and lockout steps happen only against your own VMs</li></ul></div>
+
+  <div class="step"><h2>1. Ten malware categories, by behavior not just name</h2><p><strong>Ransomware</strong> encrypts data for extortion. A <strong>Trojan</strong> disguises itself as legitimate software. A <strong>worm</strong> self-propagates without user action; a <strong>virus</strong> needs a host file and usually user action. <strong>Spyware</strong> and a <strong>keylogger</strong> both exfiltrate information quietly. <strong>Adware</strong> is the (usually) least dangerous but still unwanted. A <strong>rootkit</strong> hides itself at a privileged level of the OS. A <strong>logic bomb</strong> sits dormant until a trigger condition. <strong>Fileless malware</strong> lives in memory or abuses legitimate system tools, leaving little on disk to find.</p></div><div class="step"><h2>2. Capture and read real traffic on your isolated lab network</h2><p>The single most useful diagnostic skill in this entire domain.</p><div class="cmd"><div class="cmd__t">From kali-tools, capture a short window of traffic to/from secure-target</div><pre>sudo tcpdump -i eth0 host secure-target.lab -c 20 -nn
+# Generate some traffic from another terminal on secure-target first: ping -c 5 kali-tools.lab</pre></div></div><div class="step"><h2>3. Physical attacks: the low-tech ones that still work</h2><p><strong>Tailgating</strong> (following someone through a badge-locked door), <strong>shoulder surfing</strong> (watching someone type a password), <strong>skimming</strong> (a card-reader overlay), and <strong>forced entry</strong> are all physical-layer attacks with no exploit code involved at all — and they remain effective precisely because organizations over-invest in technical controls and under-invest in physical awareness.</p></div><div class="step"><h2>4. Network attacks: DDoS, spoofing, on-path, and DNS</h2><p>A <strong>DDoS</strong> overwhelms availability from many sources at once. <strong>Spoofing</strong> forges a source address or identity. An <strong>on-path attack</strong> (formerly "man-in-the-middle") intercepts traffic between two parties who believe they're talking directly. <strong>DNS cache poisoning</strong> corrupts a resolver's cached records to redirect victims to a malicious destination without them noticing anything wrong in the URL bar.</p></div><div class="step"><h2>5. Trigger and find an account lockout</h2><p>One of the clearest indicators of compromise you'll ever generate on purpose.</p><div class="cmd"><div class="cmd__t">Deliberately fail a login a few times, then find the evidence</div><pre>ssh baduser@secure-target.lab   # will fail — that's the point, try it 3-4 times
+sudo journalctl -u sshd --since '5 min ago' --no-pager 2>/dev/null | grep -i fail</pre></div></div><div class="step"><h2>6. Social engineering: know the specific names</h2><p><strong>Phishing</strong> (email), <strong>smishing</strong> (SMS), <strong>vishing</strong> (voice/phone), and <strong>quishing</strong> (malicious QR code) are the same con across different channels. <strong>Spear phishing</strong> targets a specific person with tailored context; <strong>whaling</strong> specifically targets executives. A <strong>deepfake</strong> takes impersonation into fabricated audio/video. All of them exploit trust and urgency, not a technical flaw.</p></div><div class="step"><h2>7. Reading an indicator of compromise</h2><p>A real IoC list from an incident might include: a file <strong>hash</strong>, a malicious <strong>IP address</strong> or <strong>domain</strong>, a <strong>malicious process</strong> name, <strong>file system artifacts</strong> (files dropped in unusual locations), a suspicious <strong>timestamp</strong> (activity at 3 AM local time), <strong>log manipulation</strong> (gaps or edited entries — often a bigger red flag than the original event), <strong>excessive resource consumption</strong>, <strong>plaintext strings</strong> found in a memory dump, an <strong>account lockout</strong>, <strong>impossible travel</strong> (same account, two countries, ten minutes apart), and <strong>concurrent sessions</strong> from different locations.</p></div>
+
+  <div class="step"><h2>Check your work</h2><p>Run these before you consider the lab finished.</p><ol class="verify"><li>tcpdump output shows real packets captured between the two VMs</li><li>journalctl output shows the failed login attempts you generated</li><li>You can name all four social engineering channels (phishing/smishing/vishing/quishing) and the two escalated variants (spear phishing, whaling)</li><li>You can list at least eight distinct types of indicators of compromise from memory</li></ol></div>
+
+  
+
+  <div class="lab-nav">
+    <span><a class="btn" href="week-05.html">&larr; Lab 5</a></span>
+    <span><a class="btn btn--primary" href="week-07.html">Lab 7 &rarr;</a></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><strong>CompTIA Security+ SY0-801 V8 Course</strong> — securityplusv8.learnlinuxforwork.com<br>
+    Written by Shea. Licensed under the
+    <a href="https://learnlinuxforwork.com/license" target="_blank" rel="noopener noreferrer">GNU AGPL v3.0 or later</a>.</div>
+    <div class="footer__links">
+      <a href="../index.html">Course home</a>
+      <a href="https://www.learnlinuxforwork.com" target="_blank" rel="noopener noreferrer">Linux training</a>
+      <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">CompTIA objectives</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lab.js"></script>
+</body>
+</html>

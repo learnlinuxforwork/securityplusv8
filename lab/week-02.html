@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 2: Change Management and Cryptography — CompTIA Security+ SY0-801 V8 Course</title>
+<meta name="description" content="Two objectives that don't look related until you realize every crypto rollout is itself a change that needs a CAB's sign-off.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .lab-wrap { max-width: 860px; margin: 0 auto; padding: 30px 22px 90px; }
+  .lab-back { font-size: 13px; color: var(--text-3); display: inline-block; margin-bottom: 18px; }
+  .lab-h { margin-bottom: 22px; }
+  .lab-h h1 { font-size: 27px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .lab-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .step { margin: 30px 0 0; }
+  .step h2 { font-size: 17px; margin-bottom: 6px; }
+  .step > p { color: var(--text-2); font-size: 14px; max-width: 72ch; }
+  .cmd { margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius);
+          overflow: hidden; background: var(--bg-elev); box-shadow: var(--shadow); }
+  .cmd__t { font-size: 12.5px; font-weight: 600; color: var(--text-2);
+             padding: 9px 14px; background: var(--bg-sunken); border-bottom: 1px solid var(--border); }
+  .cmd pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--mono);
+              font-size: 12.8px; line-height: 1.65; color: var(--text); }
+  .lab-nav { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); }
+  ol.verify { font-family: var(--mono); font-size: 12.8px; }
+  ol.verify li { margin-bottom: 6px; color: var(--text-2); }
+  @media print { .lab-back, .lab-nav, .header { display: none !important; } }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("secplus.theme.v1");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="brand__mark brand__mark--logo"><img src="../assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="24" height="24"></span>
+    <span class="brand__text">
+      <span class="brand__title">Security+ V8 Course</span>
+      <span class="brand__sub">From Learn Linux For Work · Lab 2 of 15</span>
+    </span>
+  </a>
+  <span class="header__spacer"></span>
+  <button class="btn btn--icon" data-theme-toggle title="Toggle dark / light mode" aria-label="Toggle dark or light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<div class="lab-wrap">
+  <a class="lab-back" href="../index.html#week-02">&larr; Back to Week 2</a>
+
+  <div class="lab-h">
+    <div class="section__eyebrow">Lab guide 2</div>
+    <h1>Change Management and Cryptography</h1>
+    <p style="color:var(--text-2);font-size:14.5px;max-width:74ch">Two objectives that don't look related until you realize every crypto rollout is itself a change that needs a CAB's sign-off.</p>
+    <div class="lab-meta">
+      <span class="chip chip--accent">10-12 hours</span>
+      <span class="chip">Week 1 complete</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout__title">Before you start</div><ul><li>secure-target VM up</li><li>openssl installed (it ships by default on both Rocky and Ubuntu)</li></ul></div>
+
+  <div class="step"><h2>1. Walk a change through a CAB</h2><p>A <strong>Change Advisory Board (CAB)</strong> reviews proposed changes before they hit production. A real request includes: what's changing and why (ownership, stakeholders), an <strong>impact analysis</strong> (what could this break), <strong>test results</strong>, and a <strong>backout plan</strong> (exactly how you'd undo it if it goes wrong) — plus a scheduled <strong>maintenance window</strong> so the blast radius is predictable. "Fail forward" means choosing to push a fix ahead rather than roll back, when rolling back is riskier than moving forward — a legitimate call, but one the CAB should make deliberately, not by accident.</p></div><div class="step"><h2>2. Technical implications of a change</h2><p>Before you approve anything, ask what it touches: does it require <strong>downtime</strong> or a <strong>service/application restart</strong>? Does it affect an <strong>allow list or deny list</strong>? Are there <strong>legacy application dependencies</strong> that assume the old behavior? Documentation — updated diagrams, updated policies, and <strong>version control</strong> on configuration — is part of the change, not an afterthought.</p></div><div class="step"><h2>3. Generate a private key and a self-signed certificate</h2><p>The foundation of PKI: a key pair, and a certificate that says who the public key belongs to.</p><div class="cmd"><div class="cmd__t">Generate an RSA key pair, then a self-signed cert from it</div><pre>openssl genrsa -out lab.key 2048
+openssl req -new -x509 -key lab.key -out lab.crt -days 365 -subj '/CN=lab.securityplusv8.local'
+openssl x509 -in lab.crt -noout -text | head -20</pre></div></div><div class="step"><h2>4. Generate a certificate signing request (CSR)</h2><p>In the real world, you'd send this to a CA instead of self-signing.</p><div class="cmd"><div class="cmd__t">Build a CSR from the same key</div><pre>openssl req -new -key lab.key -out lab.csr -subj '/CN=lab.securityplusv8.local'
+openssl req -in lab.csr -noout -text | head -10</pre></div></div><div class="step"><h2>5. What a CA actually does with a CSR</h2><p>A <strong>Certificate Authority</strong> verifies you control the domain/identity in the CSR, then signs it with the CA's own private key — creating a chain of trust back to a <strong>root of trust</strong> your browser or OS already trusts. If a certificate is compromised before it expires, the CA can revoke it via a <strong>Certificate Revocation List (CRL)</strong> or answer real-time revocation checks via <strong>OCSP</strong>.</p></div><div class="step"><h2>6. Symmetric vs. asymmetric, hands-on</h2><p>Same data, two completely different key models.</p><div class="cmd"><div class="cmd__t">Symmetric: one key encrypts and decrypts</div><pre>echo 'confidential lab data' > secret.txt
+openssl enc -aes-256-cbc -pbkdf2 -salt -in secret.txt -out secret.enc -pass pass:labpassword123
+openssl enc -aes-256-cbc -pbkdf2 -d -in secret.enc -pass pass:labpassword123</pre></div><div class="cmd"><div class="cmd__t">Asymmetric: the public key encrypts, only the private key decrypts</div><pre>openssl rsa -in lab.key -pubout -out lab.pub
+openssl pkeyutl -encrypt -pubin -inkey lab.pub -in secret.txt -out secret.rsa.enc
+openssl pkeyutl -decrypt -inkey lab.key -in secret.rsa.enc</pre></div></div><div class="step"><h2>7. Hash a file, then salt a password</h2><p>Hashing is one-way; salting defeats precomputed rainbow-table attacks against it.</p><div class="cmd"><div class="cmd__t">Hash the same file twice — identical output, every time</div><pre>sha256sum secret.txt
+sha256sum secret.txt</pre></div><div class="cmd"><div class="cmd__t">The same password, two different salts, two completely different hashes</div><pre>echo -n 'password123saltAAA' | sha256sum
+echo -n 'password123saltBBB' | sha256sum</pre></div></div>
+
+  <div class="step"><h2>Check your work</h2><p>Run these before you consider the lab finished.</p><ol class="verify"><li>openssl x509 -in lab.crt -noout -subject   # shows your CN</li><li>ls -l lab.key lab.crt lab.csr              # all three files exist</li><li>openssl enc -aes-256-cbc -pbkdf2 -d -in secret.enc -pass pass:labpassword123   # decrypts cleanly</li><li>You can explain what a CRL and OCSP each check, and why they're different</li></ol></div>
+
+  <div class="callout callout--warn"><div class="callout__title">Break it, then fix it</div><p><strong>Break:</strong></p><div class="cmd"><pre>openssl enc -aes-256-cbc -pbkdf2 -d -in secret.enc -pass pass:wrongpassword</pre></div><p><strong>What you'll see:</strong> A decrypt error — 'bad decrypt' or similar. Wrong key material, no way around it.</p><p><strong>Fix:</strong></p><div class="cmd"><pre>openssl enc -aes-256-cbc -pbkdf2 -d -in secret.enc -pass pass:labpassword123</pre></div><p><strong>Why it matters:</strong> Symmetric encryption has no recovery path if the key (or passphrase deriving it) is wrong or lost — that's exactly why key escrow exists as a formal recovery mechanism for organizations, not a personal habit of writing passwords on a sticky note.</p></div>
+
+  <div class="lab-nav">
+    <span><a class="btn" href="week-01.html">&larr; Lab 1</a></span>
+    <span><a class="btn btn--primary" href="week-03.html">Lab 3 &rarr;</a></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><strong>CompTIA Security+ SY0-801 V8 Course</strong> — securityplusv8.learnlinuxforwork.com<br>
+    Written by Shea. Licensed under the
+    <a href="https://learnlinuxforwork.com/license" target="_blank" rel="noopener noreferrer">GNU AGPL v3.0 or later</a>.</div>
+    <div class="footer__links">
+      <a href="../index.html">Course home</a>
+      <a href="https://www.learnlinuxforwork.com" target="_blank" rel="noopener noreferrer">Linux training</a>
+      <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">CompTIA objectives</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lab.js"></script>
+</body>
+</html>

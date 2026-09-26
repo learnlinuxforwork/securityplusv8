@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 7: Architecture Models and Zero Trust — CompTIA Security+ SY0-801 V8 Course</title>
+<meta name="description" content="How environments are actually built, and how Zero Trust changes the default assumption from "trusted network" to "prove it every time."">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .lab-wrap { max-width: 860px; margin: 0 auto; padding: 30px 22px 90px; }
+  .lab-back { font-size: 13px; color: var(--text-3); display: inline-block; margin-bottom: 18px; }
+  .lab-h { margin-bottom: 22px; }
+  .lab-h h1 { font-size: 27px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .lab-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .step { margin: 30px 0 0; }
+  .step h2 { font-size: 17px; margin-bottom: 6px; }
+  .step > p { color: var(--text-2); font-size: 14px; max-width: 72ch; }
+  .cmd { margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius);
+          overflow: hidden; background: var(--bg-elev); box-shadow: var(--shadow); }
+  .cmd__t { font-size: 12.5px; font-weight: 600; color: var(--text-2);
+             padding: 9px 14px; background: var(--bg-sunken); border-bottom: 1px solid var(--border); }
+  .cmd pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--mono);
+              font-size: 12.8px; line-height: 1.65; color: var(--text); }
+  .lab-nav { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); }
+  ol.verify { font-family: var(--mono); font-size: 12.8px; }
+  ol.verify li { margin-bottom: 6px; color: var(--text-2); }
+  @media print { .lab-back, .lab-nav, .header { display: none !important; } }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("secplus.theme.v1");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="brand__mark brand__mark--logo"><img src="../assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="24" height="24"></span>
+    <span class="brand__text">
+      <span class="brand__title">Security+ V8 Course</span>
+      <span class="brand__sub">From Learn Linux For Work · Lab 7 of 15</span>
+    </span>
+  </a>
+  <span class="header__spacer"></span>
+  <button class="btn btn--icon" data-theme-toggle title="Toggle dark / light mode" aria-label="Toggle dark or light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<div class="lab-wrap">
+  <a class="lab-back" href="../index.html#week-07">&larr; Back to Week 7</a>
+
+  <div class="lab-h">
+    <div class="section__eyebrow">Lab guide 7</div>
+    <h1>Architecture Models and Zero Trust</h1>
+    <p style="color:var(--text-2);font-size:14.5px;max-width:74ch">How environments are actually built, and how Zero Trust changes the default assumption from "trusted network" to "prove it every time."</p>
+    <div class="lab-meta">
+      <span class="chip chip--accent">8-10 hours</span>
+      <span class="chip">Week 6 complete</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout__title">Before you start</div><ul><li>secure-target and kali-tools VMs up</li></ul></div>
+
+  <div class="step"><h2>1. Cloud deployment models, compared honestly</h2><p><strong>Public</strong> cloud: shared infrastructure, lowest cost, least control. <strong>Private</strong> cloud: dedicated infrastructure, highest control, highest cost. <strong>Hybrid</strong>: a deliberate mix, usually to keep regulated data on-prem while bursting workload to public cloud. <strong>Community</strong> cloud: shared among organizations with common requirements (e.g. several government agencies). <strong>Serverless</strong> and <strong>multicloud</strong> are orthogonal choices layered on top of any of these. <strong>Infrastructure as Code (IaC)</strong> means your environment is defined in version-controlled files, not clicked together by hand — which makes it auditable and repeatable.</p></div><div class="step"><h2>2. On-premises, air-gapped, and microservices</h2><p><strong>On-premises</strong> infrastructure trades cloud's elasticity for full physical control. An <strong>air-gapped network</strong> has no physical connection to any other network at all — the strongest isolation possible, common in OT and classified environments. <strong>Microservices</strong> break an application into small, independently deployable services — which shrinks each individual attack surface but multiplies the number of surfaces and the complexity of securing the connections between them.</p></div><div class="step"><h2>3. Build an SSH tunnel between your two VMs</h2><p>Secure communication over an otherwise plain connection — the same principle behind a VPN, at a smaller scale.</p><div class="cmd"><div class="cmd__t">Tunnel a local port on kali-tools through to a service on secure-target</div><pre>ssh -L 8443:localhost:22 shea@secure-target.lab -N &
+ssh -p 8443 shea@localhost   # this now goes through the tunnel to secure-target's real SSH</pre></div></div><div class="step"><h2>4. Zero Trust architecture: three pillars</h2><p><strong>User authentication</strong> verified continuously, not once at login. <strong>Device management</strong> — checking device <strong>health</strong> (is it patched, does it have EDR running) and <strong>inventory</strong> (is this even a known device) before granting access. <strong>Application access control</strong> — access is scoped to the specific application/resource needed, not the whole network. Together these replace "you're on the VPN, so you're trusted" with "prove it, every request."</p></div><div class="step"><h2>5. Design a least-privilege access policy</h2><p>Concrete practice, not just definitions.</p><div class="cmd"><div class="cmd__t">Give webops (from Week 1) exactly what it needs, verify it has nothing more</div><pre>sudo -l -U webops
+# Confirm: webops can restart sshd via sudo, and literally nothing else</pre></div></div><div class="step"><h2>6. Secure communication and identity management</h2><p>Beyond VPN and tunneling: <strong>end-to-end encrypted messaging</strong> for sensitive comms, <strong>out-of-band management</strong> (a separate, isolated path to manage infrastructure that doesn't ride the same network it's protecting), and <strong>Security Service Edge (SSE)</strong>, which centralizes secure access policy in the cloud rather than at a physical perimeter. On the identity side: <strong>Group Managed Service Accounts (gMSAs)</strong> automate credential rotation for service accounts, and watch for <strong>privilege creep</strong> — access that accumulates over a person's career and is never revoked as their role changes.</p></div>
+
+  <div class="step"><h2>Check your work</h2><p>Run these before you consider the lab finished.</p><ol class="verify"><li>The SSH tunnel connects successfully on port 8443</li><li>sudo -l -U webops still shows only the one allowed command</li><li>You can explain the difference between hybrid and multicloud without hesitating</li></ol></div>
+
+  
+
+  <div class="lab-nav">
+    <span><a class="btn" href="week-06.html">&larr; Lab 6</a></span>
+    <span><a class="btn btn--primary" href="week-08.html">Lab 8 &rarr;</a></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><strong>CompTIA Security+ SY0-801 V8 Course</strong> — securityplusv8.learnlinuxforwork.com<br>
+    Written by Shea. Licensed under the
+    <a href="https://learnlinuxforwork.com/license" target="_blank" rel="noopener noreferrer">GNU AGPL v3.0 or later</a>.</div>
+    <div class="footer__links">
+      <a href="../index.html">Course home</a>
+      <a href="https://www.learnlinuxforwork.com" target="_blank" rel="noopener noreferrer">Linux training</a>
+      <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">CompTIA objectives</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lab.js"></script>
+</body>
+</html>

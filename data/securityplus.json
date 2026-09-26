@@ -1,0 +1,1006 @@
+{
+  "meta": {
+    "title": "Security+ V8 Course",
+    "subtitle": "Zero to CompTIA Security+ (SY0-801 V8)",
+    "tagline": "A 15-week, week-by-week course covering every domain and every objective. Free forever.",
+    "exam": "SY0-801 V8",
+    "edition": "2026",
+    "preparedFor": "Career changers, help desk techs, and sysadmins moving into security",
+    "site": "https://securityplusv8.learnlinuxforwork.com",
+    "org": "Shea's Tech",
+    "author": "Shea",
+    "links": {
+      "linuxTraining": "https://www.learnlinuxforwork.com",
+      "docLinux": "https://learnlinuxforwork.com/doc-linux",
+      "lfcs": "https://lfcs.learnlinuxforwork.com",
+      "rhcsa": "https://rhcsa.learnlinuxforwork.com",
+      "lpi": "https://lpi.learnlinuxforwork.com",
+      "devops": "https://free.learnlinuxforwork.com"
+    }
+  },
+
+  "hero": {
+    "stats": [
+      { "value": "15", "label": "weeks" },
+      { "value": "15", "label": "lab guides" },
+      { "value": "5", "label": "exam domains" },
+      { "value": "$0", "label": "to start" }
+    ]
+  },
+
+  "overview": {
+    "id": "how-it-works",
+    "num": "01",
+    "eyebrow": "01 · Overview",
+    "title": "How This Course Works",
+    "subtitle": "Fifteen weeks from general security concepts to a passing score",
+    "body": [
+      "Security+ is broader than a single-product exam. It's multiple-choice <em>and</em> performance-based, and it spans five domains that range from pure governance and risk theory to hands-on technical controls — firewalls, PKI, SIEM tooling, incident response. That breadth is exactly why this course runs longer than its RHCSA and LFCS siblings.",
+      "So this course is built around <strong>doing, not just memorizing acronyms</strong>. Every week has a focus, a short list of tasks, and a full lab guide — real tools, run on your own isolated lab VMs, never against a system you don't own. Where a topic is genuinely conceptual (governance frameworks, risk registers, compliance obligations), the guide says so and treats it as reading, not a fake lab.",
+      "This is <strong>CompTIA Security+, exam SY0-801 V8</strong>, built directly from CompTIA's official Exam Objectives document (version 1.4). At the time this course was written, CompTIA's own objectives document listed the exact question count and test length as <strong>\"TBD\"</strong> — SY0-801 had not fully launched. Everything else in this course — the five domains, their weightings, and every sub-objective — comes straight from that document. Check CompTIA's page before you book, in case the final logistics have since been published."
+    ],
+    "rhythm": [
+      { "pct": "50%", "text": "hands-on labs on VMs you can break and rebuild — firewalls, certificates, logs, permissions, scans" },
+      { "pct": "35%", "text": "reading and scenario practice — governance, risk, compliance, and incident-response processes" },
+      { "pct": "15%", "text": "review — write down every term and acronym that didn't stick the first time" }
+    ],
+    "pacing": {
+      "headers": ["Track", "Duration", "Hrs/wk", "How it runs"],
+      "rows": [
+        ["Standard", "15 weeks", "8–10", "One week per module. Realistic alongside a full-time job."],
+        ["Intensive", "8 weeks", "16–20", "Two modules per calendar week. Best with some IT background already."],
+        ["Extended", "20 weeks", "6–7", "Stretch each module by a third. Better than quitting because the pace was unrealistic."]
+      ]
+    },
+    "note": {
+      "kind": "warn",
+      "title": "This exam has real, tested performance-based tasks",
+      "text": "CompTIA lists the question format as <strong>multiple-choice and performance-based</strong>. That means some questions drop you into a simulated environment and ask you to actually configure something — not just recognize the right answer. Typing every command in this course's labs yourself, instead of reading past them, is not optional preparation. It's the actual exam format."
+    }
+  },
+
+  "exam": {
+    "id": "the-exam",
+    "num": "02",
+    "eyebrow": "02 · The exam",
+    "title": "What CompTIA Security+ V8 SY0-801 Actually Is",
+    "subtitle": "Format, domains, and what CompTIA is actually checking for",
+    "body": [
+      "Security+ certifies that you can do five things: identify and support incident response activities, assess an environment's security posture and recommend fixes, manage and monitor modern environments including cloud/mobile/hybrid, operate with awareness of applicable regulations and governance, and apply mitigation techniques against threats and vulnerabilities. CompTIA's stated target audience is a security administrator with <strong>two years of hands-on experience</strong> — this course assumes less, and builds toward that bar."
+    ],
+    "facts": [
+      { "k": "Exam code", "v": "SY0-801 V8" },
+      { "k": "Format", "v": "Multiple-choice and performance-based" },
+      { "k": "Number of questions", "v": "TBD — not yet published by CompTIA as of this course's writing" },
+      { "k": "Length of test", "v": "TBD — not yet published by CompTIA as of this course's writing" },
+      { "k": "Passing score", "v": "750 (on a scale of 100–900)" },
+      { "k": "Recommended experience", "v": "Security administrator with two years of hands-on experience" },
+      { "k": "Accreditation", "v": "ANAB-accredited to ISO/IEC 17024" },
+      { "k": "Prerequisites", "v": "None required, though CompTIA Network+ and general IT experience help" }
+    ],
+    "domains": {
+      "title": "The five exam domains",
+      "headers": ["Domain", "Weight", "Covers"],
+      "rows": [
+        ["1.0 General Security Concepts", "16%", "Security controls, change management, cryptographic solutions and PKI"],
+        ["2.0 Threats, Vulnerabilities, and Attacks", "24%", "Threat characteristics, threat actors, threat vectors, vulnerability types, indicators of compromise, AI-related risk"],
+        ["3.0 Security Architecture", "19%", "Architecture models, Zero Trust, data protection, resilience and recovery"],
+        ["4.0 Security Operations", "27%", "Mitigating controls, asset management, vulnerability management, monitoring, IAM, automation, incident response, digital forensics"],
+        ["5.0 Security Program Management and Oversight", "14%", "Governance/risk/compliance, third-party risk, audits, security awareness training"]
+      ]
+    },
+    "implications": {
+      "title": "What that means for how you study",
+      "bullets": [
+        "<strong>Domain 4 is more than a quarter of the exam.</strong> Security Operations alone covers eight separate sub-objectives — mitigating controls, asset management, vulnerability management, monitoring, IAM, automation, incident response, and forensics. Budget real time for it; this course gives it four full weeks.",
+        "<strong>This is not a Linux-only or a Windows-only exam — it's platform-agnostic.</strong> CompTIA's own hardware/software list names both Windows and Linux OS, and specific tools like Kali Linux. This course's labs run on Linux because that's what this site teaches, but the concepts transfer directly to any platform you'll actually work on.",
+        "<strong>Governance, risk, and compliance are not filler.</strong> Domain 5 is only 14% of the exam by itself, but GRC vocabulary (SLA vs. MOU vs. NDA, qualitative vs. quantitative risk, data controller vs. processor) shows up embedded in scenario questions across every other domain too.",
+        "<strong>Read every acronym like it's a vocabulary word, not a shortcut.</strong> CompTIA publishes a full acronym list alongside the objectives — this exam rewards knowing the difference between similar-sounding controls (HIDS vs. NIDS, RTO vs. RPO, SIEM vs. SOAR) cold."
+      ]
+    },
+    "note": {
+      "kind": "info",
+      "title": "Read the objectives yourself — from the source",
+      "text": "CompTIA publishes the full SY0-801 objectives document, and it is the only authoritative statement of what is testable — this course was built directly from it. Bookmark it and re-read it in Week 15: <a href=\"https://www.comptia.org/certifications/security\" target=\"_blank\" rel=\"noopener\">comptia.org — Security+</a>."
+    }
+  },
+
+  "homelab": {
+    "id": "home-lab",
+    "num": "03",
+    "eyebrow": "03 · Home lab",
+    "title": "Build Your Home Lab",
+    "subtitle": "Two virtual machines and a free hypervisor — a target to secure, and a machine to secure it from",
+    "body": [
+      "Security+ labs need two roles: something to <strong>protect</strong> and something to <strong>work from</strong>. You don't need a rack of hardware — a laptop with 8&nbsp;GB of spare RAM and a free hypervisor covers this entire course.",
+      "CompTIA's own published hardware/software list for this exam names firewalls, IDS/IPS, SIEM tooling, a vulnerability scanner, packet capture software, and both Windows and Linux systems. This course's home lab covers the realistic subset of that list a self-study candidate can actually build at home, using entirely free tools."
+    ],
+    "startHere": {
+      "kind": "warn",
+      "title": "Everything in this lab stays inside the lab",
+      "steps": [
+        "Build both VMs on a <strong>host-only or internal network</strong> — never bridge them onto your real home network or the internet.",
+        "Only scan, attack, or exploit machines <strong>you own, on that isolated network</strong>. Running these same tools against anything else — a neighbor's Wi-Fi, a work system, a random public IP — is illegal in most jurisdictions, full stop.",
+        "Snapshot both machines before you start. You will deliberately misconfigure and break things — that's the entire point."
+      ]
+    },
+    "budgetNote": {
+      "kind": "info",
+      "title": "Two machines, one job each",
+      "text": "<strong>secure-target</strong>: a plain Linux server you hunt for vulnerabilities on, patch, harden, and monitor. <strong>kali-tools</strong>: a Kali Linux VM that carries the scanning, packet capture, and analysis tools CompTIA names by name in its official software list. Neither needs more than 2 vCPUs and 4 GB RAM."
+    },
+    "groups": [
+      {
+        "step": "Step 1",
+        "title": "Pick a hypervisor",
+        "intro": "Any of these will do it — pick the one that matches your hardware.",
+        "columns": ["Hypervisor", "Why you'd pick it", "Cost"],
+        "items": [
+          {
+            "name": "Oracle VirtualBox",
+            "sub": "virtualbox.org",
+            "url": "https://www.virtualbox.org/",
+            "desc": "<strong>The default choice for this course.</strong> Free, cross-platform, host-only networking is one click away — exactly what keeps your lab isolated.",
+            "meta": "Free"
+          },
+          {
+            "name": "VMware Workstation Pro",
+            "sub": "Broadcom — support.broadcom.com",
+            "url": "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion",
+            "desc": "Free for personal use under Broadcom. Fusion is the equivalent on Mac.",
+            "meta": "Free for personal use"
+          },
+          {
+            "name": "UTM",
+            "sub": "mac.getutm.app",
+            "url": "https://mac.getutm.app/",
+            "desc": "The practical option on Apple Silicon, where VirtualBox doesn't run.",
+            "meta": "Free"
+          }
+        ]
+      },
+      {
+        "step": "Step 2",
+        "title": "Build secure-target",
+        "intro": "The machine you'll patch, harden, misconfigure on purpose, and monitor.",
+        "columns": ["Distro", "Why this one"],
+        "items": [
+          {
+            "name": "Rocky Linux 10",
+            "sub": "rockylinux.org",
+            "url": "https://rockylinux.org/",
+            "desc": "Free, no account, and ships with firewalld and SELinux enabled by default — both named directly in the exam objectives.",
+            "meta": "Free · unlimited"
+          },
+          {
+            "name": "Ubuntu Server",
+            "sub": "ubuntu.com/download/server",
+            "url": "https://ubuntu.com/download/server",
+            "desc": "A fine alternative if you're more comfortable with apt — ufw and AppArmor cover the same ground as firewalld/SELinux conceptually.",
+            "meta": "Free · unlimited"
+          }
+        ]
+      },
+      {
+        "step": "Step 3",
+        "title": "Build kali-tools",
+        "intro": "A pre-built security toolkit distro — this is the one CompTIA names directly on its software list.",
+        "columns": ["Image", "What it's for"],
+        "items": [
+          {
+            "name": "Kali Linux",
+            "sub": "kali.org",
+            "url": "https://www.kali.org/get-kali/",
+            "desc": "Ships with nmap, Wireshark, John the Ripper, and dozens of other tools this course's labs use, pre-installed. Download the pre-built VirtualBox/VMware image — don't build one from scratch.",
+            "meta": "Free"
+          }
+        ]
+      }
+    ]
+  },
+
+  "cloud": {
+    "id": "cloud-labs",
+    "num": "04",
+    "eyebrow": "04 · Cloud labs",
+    "title": "No Machine to Install On? Rent One",
+    "subtitle": "A single small cloud instance can stand in for secure-target",
+    "body": [
+      "Security+ explicitly covers cloud, mobile, and hybrid environments — so practicing on a real cloud instance isn't a compromise, it's on the syllabus. If you can't run two local VMs, a single small cloud instance plus Kali running locally covers this course."
+    ],
+    "columns": ["Provider", "Why you'd pick it", "Console"],
+    "items": [
+      {
+        "name": "DigitalOcean",
+        "sub": "cloud.digitalocean.com",
+        "url": "https://cloud.digitalocean.com/",
+        "desc": "Simple pricing, a Rocky Linux image in the catalogue, and firewall rules you configure right in the console — good hands-on practice for Domain 3.",
+        "meta": "~$6/mo"
+      },
+      {
+        "name": "Amazon Web Services",
+        "sub": "console.aws.amazon.com",
+        "url": "https://console.aws.amazon.com/",
+        "desc": "Security groups, IAM, CloudTrail logging, and GuardDuty all map directly onto Domain 4 monitoring/IAM objectives. Free tier covers a small instance.",
+        "meta": "Free tier eligible"
+      },
+      {
+        "name": "Google Cloud",
+        "sub": "console.cloud.google.com",
+        "url": "https://console.cloud.google.com/",
+        "desc": "New accounts get free trial credit that can cover this entire course.",
+        "meta": "Free trial credit"
+      }
+    ],
+    "after": {
+      "title": "Before you spend anything",
+      "bullets": [
+        "<strong>Set a billing alert on day one.</strong> Every provider offers one free.",
+        "<strong>Lock SSH to your own IP address</strong> in the security group/firewall rules before you do anything else — this is itself a Domain 3 lab task.",
+        "<strong>Destroy the instance when you finish the course.</strong> Don't leave a deliberately-misconfigured, deliberately-vulnerable box running longer than you need it."
+      ]
+    }
+  },
+
+  "certs": {
+    "id": "certification-path",
+    "num": "05",
+    "eyebrow": "05 · Certification path",
+    "title": "The Certification Ladder",
+    "subtitle": "Security+ is the on-ramp into cybersecurity — here's where it leads",
+    "body": [
+      "Security+ is widely treated as the industry baseline for security roles, and it's DoD 8140-recognized for privileged access on government contracts. But it's still a generalist, foundational certification. Where you go next depends on which direction you're headed: deeper into security operations and analysis, or sideways into the cloud/Linux/DevOps platforms that security work increasingly runs on top of."
+    ],
+    "items": [
+      {
+        "n": 1,
+        "name": "CompTIA Security+",
+        "code": "SY0-801 V8",
+        "codeUrl": "https://www.comptia.org/certifications/security",
+        "level": "The goal · foundational, DoD 8140-recognized",
+        "timing": "End of Week 15",
+        "cost": "~$404 (check CompTIA's current pricing)",
+        "featured": true,
+        "why": "The certification this course is built around, and the one most job postings that say \"security+ required\" mean by name.",
+        "prep": [
+          { "label": "learnlinuxforwork.com", "url": "https://www.learnlinuxforwork.com" },
+          { "label": "Doc Linux", "url": "https://learnlinuxforwork.com/doc-linux" }
+        ]
+      },
+      {
+        "n": 2,
+        "name": "CompTIA Cybersecurity Analyst",
+        "code": "CySA+ V8",
+        "codeUrl": "https://www.comptia.org/certifications/cybersecurity-analyst",
+        "level": "Intermediate · SOC / blue-team pathway",
+        "timing": "Natural next step, 6–12 months out",
+        "cost": "~$404 (check CompTIA's current pricing)",
+        "featured": false,
+        "why": "The direct next rung on CompTIA's own stackable pathway. Goes deep on exactly what Security+ Domain 4 only introduces: SIEM tuning, threat hunting, and incident response at a SOC-analyst level.",
+        "prep": [
+          { "label": "CompTIA CySA+", "url": "https://www.comptia.org/certifications/cybersecurity-analyst" }
+        ]
+      },
+      {
+        "n": 3,
+        "name": "Red Hat Certified System Administrator",
+        "code": "RHCSA / EX200",
+        "codeUrl": "https://rhcsa.learnlinuxforwork.com",
+        "level": "Intermediate · Linux, cloud, and DevOps pathway",
+        "timing": "Parallel or next step",
+        "cost": "~$500",
+        "featured": false,
+        "why": "The recommended sideways move if you're heading toward cloud security or DevSecOps rather than a pure SOC role. Security+ Domain 4's SELinux, hardening, and access-control objectives are RHCSA's daily bread — this is where you go to actually get fluent at them, not just recognize them on a multiple-choice question.",
+        "prep": [
+          { "label": "rhcsa.learnlinuxforwork.com", "url": "https://rhcsa.learnlinuxforwork.com" }
+        ]
+      },
+      {
+        "n": 4,
+        "name": "Linux Foundation Certified System Administrator",
+        "code": "LFCS",
+        "codeUrl": "https://lfcs.learnlinuxforwork.com",
+        "level": "Intermediate · distro-neutral alternative to RHCSA",
+        "timing": "Alternative to RHCSA",
+        "cost": "$445",
+        "featured": false,
+        "why": "Same pitch as RHCSA above, but vendor-neutral — worth it if your target employer isn't specifically a Red Hat shop.",
+        "prep": [
+          { "label": "lfcs.learnlinuxforwork.com", "url": "https://lfcs.learnlinuxforwork.com" }
+        ]
+      },
+      {
+        "n": 5,
+        "name": "CompTIA PenTest+",
+        "code": "PT0-series",
+        "codeUrl": "https://www.comptia.org/certifications/pentest",
+        "level": "Intermediate · offensive/red-team pathway",
+        "timing": "Alternative next step",
+        "cost": "~$404 (check CompTIA's current pricing)",
+        "featured": false,
+        "why": "If Week 6's malicious-activity labs were the most interesting part of this course for you, this is the offensive-security equivalent of the CySA+ pathway.",
+        "prep": [
+          { "label": "CompTIA PenTest+", "url": "https://www.comptia.org/certifications/pentest" }
+        ]
+      }
+    ],
+    "note": {
+      "kind": "info",
+      "title": "If you work for a U.S. government contractor: DoD 8140",
+      "text": "DoD Directive 8140 governs cyber workforce qualification across the Department of Defense. Security+ is the long-standing baseline certification named on the majority of federal privileged-access work roles — pairing it with a computing-environment (CE) credential like RHCSA is a common route to a privileged account on a DoD contract. Requirements change; verify current work-role mappings at the <a href=\"https://public.cyber.mil/wid/dod8140/\" target=\"_blank\" rel=\"noopener\">DoD Cyber Exchange</a> before planning around them."
+    }
+  },
+
+  "coverage": {
+    "id": "coverage-map",
+    "num": "06",
+    "eyebrow": "06 · Coverage",
+    "title": "Exam Objective Coverage Map",
+    "subtitle": "Every domain and every sub-objective from CompTIA's SY0-801 V8 objectives document, mapped to the week that covers it",
+    "intro": "CompTIA groups the SY0-801 V8 objectives into 5 domains and 27 numbered sub-objectives. Every one is covered here, built directly from CompTIA's Exam Objectives Document (version 1.4).",
+    "columns": ["Domain / objective", "Weight", "What you'll actually be able to do", "Week"],
+    "rows": [
+      ["1.0 General Security Concepts", "16%", "", ""],
+      ["1.1 Explain security concepts and controls", "", "Apply defense in depth, CIA, AAA, non-repudiation, Zero Trust, and least privilege; classify a control by category (technical, managerial, physical, operational) and type (preventive, deterring, corrective, detective, compensating, directive)", "1"],
+      ["1.2 Demonstrate the impact of change management on security", "", "Explain a change advisory board's approval process, impact analysis, backout planning, and maintenance windows, and how allow/deny lists and legacy-application dependencies factor into a change", "2"],
+      ["1.3 Explain the importance of appropriate cryptographic solutions", "", "Generate a self-signed certificate and a CSR, distinguish symmetric from asymmetric encryption, explain PKI's chain of trust, and apply salting and hashing correctly", "2"],
+      ["2.0 Threats, Vulnerabilities, and Attacks", "24%", "", ""],
+      ["2.1 Explain characteristics of threats and vulnerabilities", "", "Score a vulnerability with CVSS, look up a CVE, and explain a threat's likelihood/impact and a vulnerability's life cycle", "3"],
+      ["2.2 Describe common threat actors and motivations", "", "Distinguish a hacktivist from an insider threat from a state-sponsored actor, and match motivation (financial, espionage, ideological) to actor type", "3"],
+      ["2.3 Describe threat vectors and sources", "", "Identify message-based, image-based, browser-based, network-based, supply-chain, and physical threat vectors from a scenario description", "4"],
+      ["2.4 Explain types of vulnerabilities and attack surfaces", "", "Identify unpatched/unsupported/misconfigured systems, hardcoded secrets, zero-days, and shadow IT as attack surface", "5"],
+      ["2.5 Analyze indicators of malicious activity", "", "Recognize malware families, physical/network/social-engineering/credential/application attacks, and read indicators of compromise (hashes, IPs, log manipulation, impossible travel)", "6"],
+      ["2.6 Summarize threats and vulnerabilities associated with AI usage", "", "Explain model poisoning, prompt injection, data loss, hallucination, and jailbreaking as they apply to an organization deploying AI tools", "5"],
+      ["3.0 Security Architecture", "19%", "", ""],
+      ["3.1 Compare security implications of different architecture models", "", "Contrast cloud deployment models, on-premises, air-gapped, and microservice architectures on availability, resilience, and cost", "7"],
+      ["3.2 Manage the security architecture to protect infrastructure", "", "Apply Zero Trust architecture, secure remote access (VPN, tunneling), and least-privilege identity management to a network design", "7"],
+      ["3.3 Summarize concepts and strategies used to protect data", "", "Classify data (public through top secret), apply masking/hashing/tokenization, and map data protection roles (owner, custodian, steward, controller)", "8"],
+      ["3.4 Explain the importance of resilience and recovery", "", "Design redundancy (load balancing, clustering, UPS), define RTO/RPO/MTTR/MTBF, and distinguish hot/warm/cold recovery sites", "8"],
+      ["4.0 Security Operations", "27%", "", ""],
+      ["4.1 Apply mitigating controls, techniques, and solutions", "", "Configure a host firewall and IDS/IPS rule, set up a honeypot concept, and explain DMARC/SPF/DKIM email security and SELinux enforcement", "9"],
+      ["4.2 Explain security implications of hardware/software/data asset management", "", "Walk an asset through its full life cycle — planning, acquisition, assignment, monitoring, and secure decommissioning", "9"],
+      ["4.3 Perform tasks associated with vulnerability management", "", "Run a vulnerability scan, prioritize findings by severity, and write up remediation, verification, and responsible-disclosure reporting", "10"],
+      ["4.4 Explain security alerting and monitoring concepts and tools", "", "Aggregate logs, tail syslog, and explain SIEM, DLP, NetFlow, and SCAP at a working level", "10"],
+      ["4.5 Apply concepts related to identity and access management", "", "Provision and deprovision an account, configure MFA, and apply role-based vs. time-based vs. just-in-time access control", "11"],
+      ["4.6 Apply automation and orchestration to secure operations", "", "Write a script that automates a repetitive security task, and explain guardrails and CI/CD's place in SecOps", "11"],
+      ["4.7 Summarize incident response activities", "", "Walk the full IR lifecycle — preparation, identification, containment, eradication, recovery, and post-incident review — using a tabletop scenario", "12"],
+      ["4.8 Use data, artifacts, and sources to support a security investigation", "", "Preserve a chain of custody, capture a memory dump and bit-level image, and identify which log/data source answers which investigative question", "12"],
+      ["5.0 Security Program Management and Oversight", "14%", "", ""],
+      ["5.1 Explain the importance of governance, risk, and compliance artifacts", "", "Distinguish a guideline from a standard from a policy from a procedure, and locate a BYOD/AUP/incident-response policy's actual requirements", "13"],
+      ["5.2 Explain the impact of risk management processes", "", "Build a risk register entry, calculate SLE × ARO = ALE, and choose between transferring, accepting, avoiding, and mitigating a risk", "13"],
+      ["5.3 Explain assessment and management of third-party risk", "", "Distinguish an SLA from an MOU from an NDA, and explain vendor due diligence and the right-to-audit clause", "13"],
+      ["5.4 Summarize elements of effective security compliance", "", "Explain consequences of non-compliance, and apply privacy concepts (right to be forgotten, controller vs. processor)", "14"],
+      ["5.5 Explain concepts associated with audit and assessment activities", "", "Distinguish a known-environment from an unknown-environment penetration test, and place MITRE ATT&CK and the Cyber Kill Chain correctly", "14"],
+      ["5.6 Apply security awareness concepts to improve organizational security", "", "Design a security awareness program's training types, delivery mechanisms, and effectiveness metrics", "14"]
+    ]
+  },
+
+  "weeks": {
+    "id": "the-plan",
+    "num": "07",
+    "eyebrow": "07 · The plan",
+    "title": "The 15-Week Plan",
+    "subtitle": "Check tasks off as you go — your progress is saved in this browser",
+    "items": [
+      {
+        "id": "week-01",
+        "n": 1,
+        "title": "Security Concepts and Controls",
+        "domain": "General Security Concepts",
+        "hours": "8–10",
+        "summary": "The vocabulary you'll reuse in every other week: CIA, AAA, Zero Trust, and how to classify any control you'll ever encounter.",
+        "tasks": [
+          "Explain confidentiality, integrity, and availability with a real example of each being violated",
+          "Explain authentication, authorization, and accounting (AAA) as three separate, sequential steps",
+          "Apply the principle of least privilege to a sample user account",
+          "Classify five real-world controls by category (technical/managerial/physical/operational) and type (preventive/detective/corrective/compensating/deterring/directive)",
+          "Explain Zero Trust's \"never trust, always verify\" principle in one paragraph, from memory"
+        ],
+        "objectives": [
+          "1.1 Explain security concepts and controls"
+        ]
+      },
+      {
+        "id": "week-02",
+        "n": 2,
+        "title": "Change Management and Cryptography",
+        "domain": "General Security Concepts",
+        "hours": "10–12",
+        "summary": "Two objectives that don't look related until you realize every crypto rollout is itself a change that needs a CAB's sign-off.",
+        "tasks": [
+          "Walk a sample change through a change advisory board's approval process, including backout planning",
+          "Explain the difference between symmetric and asymmetric encryption, with one algorithm example each",
+          "Generate a private key and a self-signed certificate with openssl",
+          "Generate a certificate signing request (CSR) and explain what a CA does with it",
+          "Hash a file and explain what salting adds that a plain hash doesn't",
+          "Explain a certificate revocation list (CRL) versus OCSP"
+        ],
+        "objectives": [
+          "1.2 Demonstrate the impact of change management processes on security",
+          "1.3 Explain the importance of using appropriate cryptographic solutions"
+        ]
+      },
+      {
+        "id": "week-03",
+        "n": 3,
+        "title": "Threat Characteristics and Threat Actors",
+        "domain": "Threats, Vulnerabilities, and Attacks",
+        "hours": "8–10",
+        "summary": "Who's attacking, why, and how you'd actually know a threat is credible.",
+        "tasks": [
+          "Look up a real CVE and read its CVSS score breakdown",
+          "Explain the difference between a threat's likelihood and its impact using a scoring matrix",
+          "Match five threat actor types (nation-state, hacktivist, insider, unskilled attacker, organized crime) to their typical motivations",
+          "Explain why an \"accidental/unintentional\" insider is still classified as a threat actor",
+          "Describe a threat intelligence feed and what \"life cycle\" means for a threat"
+        ],
+        "objectives": [
+          "2.1 Explain characteristics of threats and vulnerabilities",
+          "2.2 Describe common threat actors and motivations"
+        ]
+      },
+      {
+        "id": "week-04",
+        "n": 4,
+        "title": "Threat Vectors and Attack Surfaces",
+        "domain": "Threats, Vulnerabilities, and Attacks",
+        "hours": "8–10",
+        "summary": "Every way in — message, image, browser, network, supply chain, physical, and signal-based.",
+        "tasks": [
+          "Identify five message-based and image-based threat vectors from real phishing/QR-code examples",
+          "Explain why a supply-chain or managed-service-provider compromise is harder to detect than a direct attack",
+          "Set up a basic host firewall rule on secure-target and explain which threat vectors it does and doesn't block",
+          "Explain the difference between an access vestibule and a standard door lock as physical controls",
+          "Identify Bluetooth, RF, and NFC as signal-based vectors and one realistic attack against each"
+        ],
+        "objectives": [
+          "2.3 Describe threat vectors and sources"
+        ]
+      },
+      {
+        "id": "week-05",
+        "n": 5,
+        "title": "Vulnerability Types and AI-Related Risk",
+        "domain": "Threats, Vulnerabilities, and Attacks",
+        "hours": "8–10",
+        "summary": "The gaps attackers walk through — and the newest category CompTIA added: AI-specific threats.",
+        "tasks": [
+          "Run a basic vulnerability scan against secure-target from kali-tools and review the findings",
+          "Identify a time-of-check/time-of-use (TOC/TOU) race condition from a code example",
+          "Search a public repository for an accidentally committed hardcoded secret (in a safe, sample repo)",
+          "Explain model poisoning, prompt injection, and hallucination as distinct AI risks, with one real-world example each",
+          "Explain why an LLM's \"explainability\" gap is itself a listed vulnerability category"
+        ],
+        "objectives": [
+          "2.4 Explain types of vulnerabilities and attack surfaces",
+          "2.6 Summarize threats and vulnerabilities associated with artificial intelligence (AI) usage"
+        ]
+      },
+      {
+        "id": "week-06",
+        "n": 6,
+        "title": "Indicators of Malicious Activity",
+        "domain": "Threats, Vulnerabilities, and Attacks",
+        "hours": "10–12",
+        "summary": "The biggest single objective in the exam. Malware families, network attacks, social engineering, and how to read an indicator of compromise.",
+        "tasks": [
+          "Capture and read basic packet traffic on kali-tools with tcpdump or Wireshark, on your isolated lab network only",
+          "Identify five malware categories (ransomware, trojan, worm, rootkit, fileless malware) and how each persists",
+          "Explain the difference between phishing, spear phishing, whaling, vishing, and quishing with a real (declawed) example of each",
+          "Trigger a failed-login lockout on secure-target on purpose, then find the evidence in the logs",
+          "Identify hash, IP address, and log-manipulation indicators of compromise from a sample incident log"
+        ],
+        "objectives": [
+          "2.5 Given a scenario, analyze indicators of malicious activity"
+        ]
+      },
+      {
+        "id": "week-07",
+        "n": 7,
+        "title": "Architecture Models and Zero Trust",
+        "domain": "Security Architecture",
+        "hours": "8–10",
+        "summary": "How environments are actually built, and how Zero Trust changes the default assumption from \"trusted network\" to \"prove it every time.\"",
+        "tasks": [
+          "Compare public, private, hybrid, and community cloud deployment models on cost, control, and risk",
+          "Explain microservices and logical/physical segmentation as architecture choices, not just buzzwords",
+          "Configure a VPN or SSH tunnel between your two lab VMs and explain what it protects",
+          "Design a basic Zero Trust access policy for a sample user, covering device health and least-privilege access",
+          "Explain a security service edge (SSE) in one sentence you could say in an interview"
+        ],
+        "objectives": [
+          "3.1 Compare and contrast security implications of different architecture models",
+          "3.2 Given a scenario, manage the security architecture to best protect the infrastructure"
+        ]
+      },
+      {
+        "id": "week-08",
+        "n": 8,
+        "title": "Data Protection, Resilience, and Recovery",
+        "domain": "Security Architecture",
+        "hours": "10–12",
+        "summary": "Protecting data at rest, in transit, and in use — then making sure the whole environment survives a bad day.",
+        "tasks": [
+          "Classify five sample data types by CompTIA's classification scale (public through top secret)",
+          "Apply masking, hashing, and tokenization to a sample dataset and explain when you'd use each",
+          "Map data protection roles: owner, custodian, steward, controller, and subprocessor",
+          "Calculate RTO, RPO, MTTR, and MTBF from a sample incident timeline",
+          "Design a backup schedule with retention and restoration testing, and explain what \"immutable\" backup means"
+        ],
+        "objectives": [
+          "3.3 Summarize concepts and strategies used to protect data",
+          "3.4 Explain the importance of resilience and recovery in security architecture"
+        ]
+      },
+      {
+        "id": "week-09",
+        "n": 9,
+        "title": "Mitigating Controls and Asset Management",
+        "domain": "Security Operations",
+        "hours": "10–12",
+        "summary": "The first Security Operations week — the technical controls you'd actually deploy, and tracking what you own.",
+        "tasks": [
+          "Configure firewalld or ufw rules on secure-target to allow only the services it needs",
+          "Set SELinux (or AppArmor) to enforcing mode and resolve one denial you trigger on purpose",
+          "Explain DMARC, SPF, and DKIM's role in stopping email spoofing",
+          "Set up a basic honeypot concept — a fake service on an unused port — and explain what it's for",
+          "Walk a sample asset through its full life cycle: planning, procurement, assignment, tracking, and secure disposal"
+        ],
+        "objectives": [
+          "4.1 Given a scenario, apply mitigating controls, techniques, and solutions to secure the environment",
+          "4.2 Explain the security implications of proper hardware, software, and data asset management"
+        ]
+      },
+      {
+        "id": "week-10",
+        "n": 10,
+        "title": "Vulnerability Management and Monitoring",
+        "domain": "Security Operations",
+        "hours": "10–12",
+        "summary": "Finding problems systematically, and building the visibility to catch the next one before it's an incident.",
+        "tasks": [
+          "Run a full vulnerability scan against secure-target, prioritize findings by severity, and write a one-page remediation plan",
+          "Aggregate and tail logs from multiple sources on secure-target with journalctl and a central log file",
+          "Explain what a SIEM does that a plain log file doesn't",
+          "Explain NetFlow, SNMP, and syslog as three different monitoring protocols with different jobs",
+          "Write a responsible-disclosure-style report for a vulnerability you found in your own lab"
+        ],
+        "objectives": [
+          "4.3 Given a scenario, perform tasks associated with vulnerability management",
+          "4.4 Explain security alerting and monitoring concepts and tools"
+        ]
+      },
+      {
+        "id": "week-11",
+        "n": 11,
+        "title": "Identity, Access Management, and Automation",
+        "domain": "Security Operations",
+        "hours": "10–12",
+        "summary": "Provisioning accounts correctly, and using scripting to make the boring parts of security repeatable.",
+        "tasks": [
+          "Provision a new user with least-privilege access, then deprovision it cleanly and verify nothing was left behind",
+          "Configure multi-factor authentication (MFA) on a sample service using a soft token app",
+          "Compare role-based, time-based, and just-in-time access control models with a real scenario for each",
+          "Write a short bash script that checks for a common misconfiguration (e.g. a world-writable file) and reports it",
+          "Explain what guardrails mean in an automated security workflow, and one way automation can make things worse if it's wrong"
+        ],
+        "objectives": [
+          "4.5 Given a scenario, apply concepts related to identity and access management",
+          "4.6 Given a scenario, apply automation and orchestration solutions to secure operations"
+        ]
+      },
+      {
+        "id": "week-12",
+        "n": 12,
+        "title": "Incident Response and Digital Forensics",
+        "domain": "Security Operations",
+        "hours": "10–12",
+        "summary": "The last Security Operations week — what happens after the alert fires, and how you prove what happened afterward.",
+        "tasks": [
+          "Run a tabletop exercise against a written incident scenario, covering preparation through post-incident review",
+          "Walk the incident response lifecycle in order: identification, containment, eradication, recovery, lessons learned",
+          "Explain chain of custody and why it matters even in an internal-only investigation",
+          "Take a memory dump and a bit-level disk image of a lab VM and explain when you'd use each",
+          "Identify which data source (access log, NetFlow, packet capture, surveillance footage) answers a specific investigative question"
+        ],
+        "objectives": [
+          "4.7 Summarize concepts associated with incident response activities",
+          "4.8 Given a scenario, use data, artifacts and sources to support a security investigation"
+        ]
+      },
+      {
+        "id": "week-13",
+        "n": 13,
+        "title": "Governance, Risk, and Third-Party Risk",
+        "domain": "Security Program Management and Oversight",
+        "hours": "8–10",
+        "summary": "The first GRC week — the paperwork that decides what \"secure enough\" means for a given organization.",
+        "tasks": [
+          "Distinguish a guideline from a standard from a procedure from a policy, with a real document type for each",
+          "Read a sample AUP and BYOD policy and identify three concrete requirements in each",
+          "Build a one-row risk register entry: asset, likelihood, impact, owner, current mitigation",
+          "Calculate annualized loss expectancy (ALE = SLE × ARO) from a sample scenario",
+          "Distinguish an SLA from an MOU from an NDA from an MSA, and pick the right one for three sample vendor scenarios"
+        ],
+        "objectives": [
+          "5.1 Explain the importance of governance, risk, and compliance artifacts",
+          "5.2 Explain the impact of risk management processes on the security of the organization",
+          "5.3 Explain the assessment and management processes associated with third-party risk"
+        ]
+      },
+      {
+        "id": "week-14",
+        "n": 14,
+        "title": "Compliance, Audits, and Security Awareness",
+        "domain": "Security Program Management and Oversight",
+        "hours": "8–10",
+        "summary": "The last content week — proving you're compliant, testing that you actually are, and teaching everyone else.",
+        "tasks": [
+          "Explain the consequences of non-compliance across reputational, financial, legal, and contractual categories",
+          "Explain the difference between a data controller and a data processor, and what \"right to be forgotten\" requires of each",
+          "Distinguish a known-environment from an unknown-environment penetration test",
+          "Place MITRE ATT&CK and the Cyber Kill Chain correctly as two different reference models for the same problem",
+          "Design a one-page security awareness training outline covering initial, ongoing, and targeted training types"
+        ],
+        "objectives": [
+          "5.4 Summarize elements of effective security compliance",
+          "5.5 Explain concepts associated with audit and assessment activities",
+          "5.6 Given a scenario, apply security awareness concepts to improve organizational security"
+        ]
+      },
+      {
+        "id": "week-15",
+        "n": 15,
+        "title": "Mock Exam, Remediation, and Exam Day",
+        "domain": "Putting it together",
+        "hours": "10–12",
+        "summary": "A full timed mock exam under real conditions, remediation of everything you missed, and exam-day logistics.",
+        "tasks": [
+          "Sit a full timed practice exam under real conditions — no notes, no lookups",
+          "Score yourself by domain and identify your weakest one",
+          "Redo that domain's lab guide from memory, untimed",
+          "Review the full CompTIA Security+ acronym list until every one is automatic",
+          "Confirm your exam-day logistics: ID, testing method, and what you're allowed to bring"
+        ],
+        "objectives": [
+          "Demonstrate readiness across all five Security+ domains",
+          "Identify and remediate weak domains",
+          "Understand exam-day requirements"
+        ]
+      }
+    ]
+  },
+
+  "labs": {
+    "id": "lab-guides",
+    "num": "08",
+    "eyebrow": "08 · Lab guides",
+    "title": "Lab Guides",
+    "subtitle": "One standalone guide per week — real tools, real scenarios, and a short verification step",
+    "intro": "Each guide is self-contained: what you're doing, the actual commands or scenario, and how to check you got it right. Hands-on steps run only on your own isolated lab VMs — never against a system you don't own.",
+    "note": {
+      "kind": "warn",
+      "title": "Ethics and legality, once, clearly",
+      "text": "Every scanning, exploitation, or attack-simulation step in this course happens on VMs you built, on a network isolated from the internet and from anyone else's systems. Running the same tools against anything else — without explicit written authorization — is illegal in most jurisdictions. This isn't a formality; CompTIA's own candidate agreement and most employers take it exactly that seriously."
+    }
+  },
+
+  "verify": {
+    "id": "employer-verification",
+    "num": "09",
+    "eyebrow": "09 · Employer verification",
+    "title": "Employer Verification",
+    "subtitle": "This course is free. A verifiable certificate of completion, if you want one, runs through a $20/month subscription you can cancel anytime",
+    "body": [
+      "Everything on this page — all 15 weeks, every lab guide — is free and always will be. It has no login and tracks nothing.",
+      "Some employers, or just your own resume, benefit from more than your word that you did the work. Learn Linux For Work's paid course track wraps this same curriculum in a tracked account, so finishing it produces a certificate you can actually show — not just a PDF you made yourself. It's a $20/month subscription, not a one-time purchase: stay enrolled while you work through the weeks, then cancel as soon as you've got your certificate. You keep it either way."
+    ],
+    "startHere": {
+      "kind": "info",
+      "title": "How it works",
+      "steps": [
+        "Join Learn Linux For Work and enroll in the Security+ course track — $20/month, cancel anytime.",
+        "Work through the same 15 weeks and tasks on this page, tracked to your account instead of just your browser.",
+        "Finish the course and request your certificate — a shareable digital credential for LinkedIn, or a copy printed and mailed to your door. Cancel the subscription once you have it; the certificate is yours to keep."
+      ]
+    },
+    "groups": [
+      {
+        "step": "Choose one",
+        "title": "Two ways to prove it",
+        "intro": "Same certificate, delivered two ways — click either card to enroll and pick one once you finish.",
+        "items": [
+          {
+            "name": "Digital certificate",
+            "sub": "Included with enrollment",
+            "desc": "A certificate with a unique ID you can point to, plus a LinkedIn-ready credential you can add straight to your profile under Licenses &amp; Certifications. Download the PDF and print it yourself if you want a paper copy.",
+            "meta": "Instant",
+            "url": "https://learnlinuxforwork.com/courses/securityplusv8"
+          },
+          {
+            "name": "Printed & mailed certificate",
+            "sub": "Physical copy",
+            "desc": "The same certificate, professionally printed and mailed to your home address — for the wall, the interview folder, or a government contract file that wants a hard copy on record.",
+            "meta": "+ shipping",
+            "url": "https://learnlinuxforwork.com/courses/securityplusv8"
+          }
+        ]
+      }
+    ],
+    "note": {
+      "title": "Join Learn Linux For Work",
+      "text": "Enroll in the Security+ course for $20/month and turn your progress on this page into a certificate you can put in front of an employer. Cancel anytime — including right after you get it.",
+      "url": "https://learnlinuxforwork.com/courses/securityplusv8",
+      "label": "Enroll — $20/mo"
+    }
+  },
+
+  "resources": {
+    "id": "resources",
+    "num": "10",
+    "eyebrow": "10 · Resources",
+    "title": "Core Resource List",
+    "subtitle": "Free and low-cost, and every one of them is linked",
+    "groups": [
+      {
+        "category": "The authoritative source",
+        "items": [
+          { "name": "CompTIA Security+", "url": "https://www.comptia.org/certifications/security", "desc": "CompTIA's own certification page — format, pricing, and how to book. The only definitive statement of what's testable." },
+          { "name": "CompTIA Security+ Exam Objectives", "url": "https://www.comptia.org/certifications/security", "desc": "The full SY0-801 V8 objectives document this course is built from, with every domain, sub-objective, and the acronym list." }
+        ]
+      },
+      {
+        "category": "Getting the operating systems",
+        "items": [
+          { "name": "Rocky Linux 10", "url": "https://rockylinux.org/", "desc": "Free, no account. The recommended secure-target distro for this course." },
+          { "name": "Ubuntu Server", "url": "https://ubuntu.com/download/server", "desc": "A fine alternative secure-target OS." },
+          { "name": "Kali Linux", "url": "https://www.kali.org/get-kali/", "desc": "The pre-built security toolkit VM this course's labs run from." }
+        ]
+      },
+      {
+        "category": "Hypervisors and home lab",
+        "items": [
+          { "name": "Oracle VirtualBox", "url": "https://www.virtualbox.org/", "desc": "Free, cross-platform, one-click snapshots and host-only networking. The default recommendation for this course." },
+          { "name": "VMware Workstation Pro", "url": "https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion", "desc": "Free for personal use under Broadcom." },
+          { "name": "UTM", "url": "https://mac.getutm.app/", "desc": "The practical option on Apple Silicon." }
+        ]
+      },
+      {
+        "category": "Tools named in CompTIA's official software list",
+        "items": [
+          { "name": "Nmap", "url": "https://nmap.org/", "desc": "The network mapper referenced in CompTIA's own tools list — scanning, on your own lab network only." },
+          { "name": "Wireshark", "url": "https://www.wireshark.org/", "desc": "The packet capture software named in CompTIA's software list." },
+          { "name": "OpenSSL", "url": "https://www.openssl.org/", "desc": "The toolkit behind every certificate and hash generated in Week 2's PKI lab." }
+        ]
+      },
+      {
+        "category": "Frameworks and reference models named in the exam",
+        "items": [
+          { "name": "MITRE ATT&CK", "url": "https://attack.mitre.org/", "desc": "Named directly as a reference source under Domain 5's audit and assessment objective." },
+          { "name": "NIST Cybersecurity Framework", "url": "https://www.nist.gov/cyberframework", "desc": "The most widely referenced U.S. governance framework — background reading for Domain 5." },
+          { "name": "OWASP Top 10", "url": "https://owasp.org/www-project-top-ten/", "desc": "Background reading for Domain 2's application attack objectives." }
+        ]
+      },
+      {
+        "category": "Practice under pressure",
+        "items": [
+          { "name": "Professor Messer's Security+ training", "url": "https://www.professormesser.com/security-plus/", "desc": "Free, well-regarded video training covering the prior Security+ objective set — a good supplement while SY0-801 content matures." },
+          { "name": "Learn Linux For Work — hands-on labs", "url": "https://www.learnlinuxforwork.com", "desc": "Guided browser-based Linux labs. No hypervisor, nothing to install." }
+        ]
+      },
+      {
+        "category": "Reference and documentation",
+        "items": [
+          { "name": "Doc Linux", "url": "https://learnlinuxforwork.com/doc-linux", "desc": "Command reference and syntax lookups. Keep it open in a second tab while you lab." },
+          { "name": "man7.org Linux man-pages project", "url": "https://man7.org/linux/man-pages/", "desc": "The same man pages you'd read locally, in a browser." }
+        ]
+      },
+      {
+        "category": "Training and community",
+        "items": [
+          { "name": "Learn Linux For Work", "url": "https://www.learnlinuxforwork.com", "desc": "Structured, work-focused Linux and security training." },
+          { "name": "r/CompTIA", "url": "https://www.reddit.com/r/CompTIA/", "desc": "Community for exam-day write-ups and study check-ins." },
+          { "name": "Shea's Tech on YouTube", "url": "https://www.youtube.com/@sheastech", "desc": "Video walkthroughs for people just getting started." }
+        ]
+      },
+      {
+        "category": "What comes after this course",
+        "items": [
+          { "name": "CompTIA CySA+", "url": "https://www.comptia.org/certifications/cybersecurity-analyst", "desc": "The direct next rung — SOC-analyst-level detection and response." },
+          { "name": "RHCSA course", "url": "https://rhcsa.learnlinuxforwork.com", "desc": "Recommended if you're heading toward cloud security or DevSecOps rather than a pure SOC path." },
+          { "name": "LFCS course", "url": "https://lfcs.learnlinuxforwork.com", "desc": "Distro-neutral alternative to RHCSA." },
+          { "name": "LPI Linux Essentials course", "url": "https://lpi.learnlinuxforwork.com", "desc": "If Linux itself still feels shaky, this is the six-week course to build that foundation first." }
+        ]
+      }
+    ]
+  },
+
+  "costs": {
+    "id": "costs",
+    "num": "11",
+    "eyebrow": "11 · Costs",
+    "title": "Estimated Costs",
+    "subtitle": "What this actually costs, with the optional parts marked",
+    "columns": ["Item", "Estimate"],
+    "rows": [
+      ["This course and all 15 lab guides", "$0"],
+      ["Rocky Linux or Ubuntu Server (secure-target)", "$0"],
+      ["Kali Linux", "$0"],
+      ["Two lab VMs on hardware you already own", "$0"],
+      ["<a href=\"https://www.comptia.org/certifications/security\" target=\"_blank\" rel=\"noopener\">CompTIA Security+ exam (SY0-801 V8)</a>", "~$404 (check CompTIA's current pricing)"],
+      ["Cloud instance, if you can't install a VM locally", "~$6/month, less if you destroy it when done"],
+      ["CompTIA CySA+ — optional next step", "~$404 (check CompTIA's current pricing)"],
+      ["Exam retake, if it comes to that", "Full retake fee applies — check CompTIA's current voucher/retake policy"]
+    ],
+    "note": {
+      "kind": "danger",
+      "title": "The cheapest way to fail",
+      "text": "Booking the exam before you can pass a full timed mock cleanly. Security+ mixes multiple-choice with genuine performance-based tasks — sitting it unprepared costs you the full exam fee and a month of momentum. Pass a mock first, then book."
+    }
+  },
+
+  "examday": {
+    "id": "exam-day",
+    "num": "12",
+    "eyebrow": "12 · Exam day",
+    "title": "Exam Day and Staying On Track",
+    "subtitle": "The habits that get you there, and the checklist for the morning itself",
+    "tips": [
+      { "head": "Reboot secure-target after every hardening lab.", "text": "A firewall rule or SELinux policy that only works until the next reboot is a configuration you didn't actually finish." },
+      { "head": "Keep a break/fix log.", "text": "Every misconfiguration you triggered on purpose and how you found it in the logs. This is your real study guide by Week 15." },
+      { "head": "Live in the acronym list.", "text": "CompTIA publishes one alongside the objectives. This exam rewards knowing HIDS from NIDS from WIPS cold, not just \"an intrusion detection thing.\"" },
+      { "head": "Treat the performance-based questions as real tasks.", "text": "If a scenario asks you to configure something, you should have typed that exact kind of command in a lab guide already — not be seeing the syntax for the first time." },
+      { "head": "Don't skip the GRC weeks because they're not hands-on.", "text": "Weeks 13–14 are the ones people cram the night before and then miss five easy points on scenario questions that reuse the same vocabulary in every other domain." },
+      { "head": "Snapshot before every lab.", "text": "It removes the fear of breaking things, which is the single biggest thing slowing beginners down." }
+    ],
+    "checklist": {
+      "title": "The morning of the exam",
+      "bullets": [
+        "Government-issued photo ID ready — check the name matches your CompTIA account exactly.",
+        "Test your machine, camera, and internet against the proctoring requirements the day before, not the morning of.",
+        "Clear your desk completely. No notes, no books, no second monitor, no phone.",
+        "Read every question fully — performance-based tasks often bury a key constraint in the second sentence.",
+        "Flag anything you're unsure of and come back to it — there's no penalty for reviewing.",
+        "Last few minutes: revisit any flagged question once, then submit. Second-guessing a confident answer usually costs points, not gains them."
+      ]
+    },
+    "note": {
+      "kind": "info",
+      "title": "If you don't pass the first time",
+      "text": "It's a broad exam and plenty of good candidates need two attempts. CompTIA's score report breaks results down by domain — work your weakest domain for two weeks, sit another mock, and book the retake."
+    }
+  },
+
+  "story": {
+    "id": "story",
+    "num": "13",
+    "eyebrow": "13 · The why",
+    "title": "Why I Built This Guide",
+    "subtitle": "A note from Shea Bennett, founder of Shea's Tech",
+    "photo": "assets/img/Shea-Profile.png",
+    "photoFallback": "https://rhcsa.learnlinuxforwork.com/assets/img/Shea-Profile.png",
+    "photoAlt": "Shea Bennett, founder of Shea's Tech",
+    "linkedin": "https://www.linkedin.com/in/sheastech/",
+    "youtube": "https://www.youtube.com/@sheastech?sub_confirmation=1",
+    "body": [
+      "Shea Bennett started his career in Information Technology as a Helpdesk Analyst with no formal training or background in IT. He had no experience when he left the U.S. Navy, where he served as a Hospital Corpsman assigned to a Marine Corps battalion as a Fleet Marine Force (FMF) combat medic. His dream was to become a medical doctor, but the cost of medical education was simply too high — not something the Montgomery GI Bill alone could cover.",
+      "While working as a surgical technologist passing instruments at Naval Medical Center San Diego, he met engineers from a healthcare imaging company and asked one of them for help getting into IT. To his surprise, the man helped him land his first real IT job. Shea then spent the next few years training onsite at that company's headquarters in northern New Jersey, flying back and forth from San Diego. He struggled at first — he's a visual learner, and in 2007 the most common way to learn IT was in-person bootcamps or classroom training, neither of which he could afford.",
+      "Then he found video-based IT training, and never looked back. Shea is 100% self-taught. He went on to earn a Bachelor's and a Master's degree from National University in San Diego, and trained extensively alongside various government agencies and U.S. government IT contractors — work that put him in the room for exactly the kind of governance, risk, and compliance requirements Domain 5 of this course covers.",
+      "Security is where every other course on this site eventually points. RHCSA and LFCS teach you to run the system; Security+ teaches you to defend it. This course exists because that step — from operator to defender — deserves the same real, hands-on treatment as everything else here, not a slide deck of acronyms to memorize the night before."
+    ],
+    "quote": [
+      "This was built for that fundi in Kenya, that hustler in Nigeria, the determined in Rwanda or Ethiopia. The hungry surviving in the UAE. The Indonesian or Filipino brother or sister — determined, but never given a chance or guidance."
+    ],
+    "closing": "If anything here is wrong, report it and we'll fix it."
+  },
+
+  "credits": {
+    "id": "credits",
+    "num": "14",
+    "eyebrow": "14 · Credits",
+    "title": "Credits and Trademarks",
+    "subtitle": "This course is independent. Every product named here belongs to somebody, and that somebody is not me.",
+    "body": [
+      "This is an independent, community-written study guide, built directly from CompTIA's published SY0-801 V8 Exam Objectives (version 1.4). It is <strong>not affiliated with, sponsored by, endorsed by, or certified by</strong> CompTIA, Inc. or any other organization named on this site. Nothing here is official courseware, and completing this course guarantees nothing about the exam.",
+      "All course text and lab guides are original work by Shea, released under the GNU AGPL v3.0 or later. CompTIA's Exam Objectives document — including all domain names, sub-objective wording, and the acronym list — is <strong>&copy; CompTIA, Inc.</strong>, used here for reference and study purposes only. The objectives themselves are the authoritative statement of what SY0-801 covers — always check the source, and note that some exam logistics (question count, test length) were still listed as \"TBD\" in CompTIA's own document as of this course's writing."
+    ],
+    "columns": ["Product or mark", "Belongs to", "Used here for"],
+    "rows": [
+      [
+        "CompTIA, CompTIA Security+, SY0-801",
+        "CompTIA, Inc.",
+        "The certification this course prepares you for. CompTIA publishes the exam objectives this course maps to. <a href=\"https://www.comptia.org/\" target=\"_blank\" rel=\"noopener\">comptia.org</a>"
+      ],
+      [
+        "CompTIA Cybersecurity Analyst, CySA+",
+        "CompTIA, Inc.",
+        "Named as the recommended next certification after this course."
+      ],
+      [
+        "CompTIA PenTest+",
+        "CompTIA, Inc.",
+        "Named as an alternative offensive-security next step."
+      ],
+      [
+        "Rocky Linux",
+        "Rocky Enterprise Software Foundation",
+        "The recommended secure-target distro for the home lab. <a href=\"https://rockylinux.org/\" target=\"_blank\" rel=\"noopener\">rockylinux.org</a>"
+      ],
+      [
+        "Ubuntu",
+        "Canonical Ltd.",
+        "An alternative secure-target distro. <a href=\"https://ubuntu.com/\" target=\"_blank\" rel=\"noopener\">ubuntu.com</a>"
+      ],
+      [
+        "Kali Linux",
+        "OffSec Services Limited",
+        "The security-tooling distro used throughout this course's hands-on labs. <a href=\"https://www.kali.org/\" target=\"_blank\" rel=\"noopener\">kali.org</a>"
+      ],
+      [
+        "Nmap",
+        "Nmap Project (Gordon Lyon)",
+        "The network scanner named in CompTIA's official software list and used in Week 5's vulnerability lab. <a href=\"https://nmap.org/\" target=\"_blank\" rel=\"noopener\">nmap.org</a>"
+      ],
+      [
+        "Wireshark",
+        "The Wireshark Foundation",
+        "The packet capture and analysis tool used in Week 6's network attack lab. <a href=\"https://www.wireshark.org/\" target=\"_blank\" rel=\"noopener\">wireshark.org</a>"
+      ],
+      [
+        "OpenSSL",
+        "The OpenSSL Project",
+        "The cryptography toolkit used in Week 2's PKI lab. <a href=\"https://www.openssl.org/\" target=\"_blank\" rel=\"noopener\">openssl.org</a>"
+      ],
+      [
+        "Oracle VirtualBox",
+        "Oracle Corporation",
+        "The default hypervisor recommendation for the home lab. <a href=\"https://www.virtualbox.org/\" target=\"_blank\" rel=\"noopener\">virtualbox.org</a>"
+      ],
+      [
+        "VMware Workstation Pro, Fusion",
+        "Broadcom Inc.",
+        "An alternative hypervisor, free for personal use. <a href=\"https://www.vmware.com/\" target=\"_blank\" rel=\"noopener\">vmware.com</a>"
+      ],
+      [
+        "MITRE ATT&CK",
+        "The MITRE Corporation",
+        "Referenced as a reference source for audit and assessment activities, Week 14. <a href=\"https://attack.mitre.org/\" target=\"_blank\" rel=\"noopener\">attack.mitre.org</a>"
+      ],
+      [
+        "NIST, NIST Cybersecurity Framework",
+        "National Institute of Standards and Technology",
+        "Referenced as background reading for governance and compliance, Domain 5. <a href=\"https://www.nist.gov/\" target=\"_blank\" rel=\"noopener\">nist.gov</a>"
+      ],
+      [
+        "OWASP, OWASP Top 10",
+        "OWASP Foundation",
+        "Referenced as background reading for application attack objectives, Domain 2. <a href=\"https://owasp.org/\" target=\"_blank\" rel=\"noopener\">owasp.org</a>"
+      ],
+      [
+        "Red Hat, RHEL, RHCSA, EX200",
+        "Red Hat, Inc.",
+        "Named as a recommended next certification for a cloud/DevOps security path. <a href=\"https://www.redhat.com/\" target=\"_blank\" rel=\"noopener\">redhat.com</a>"
+      ],
+      [
+        "Linux Foundation, LFCS",
+        "The Linux Foundation",
+        "Named as a distro-neutral alternative to RHCSA. <a href=\"https://www.linuxfoundation.org/\" target=\"_blank\" rel=\"noopener\">linuxfoundation.org</a>"
+      ],
+      [
+        "DoD 8140, DoD 8570.01-M",
+        "U.S. Department of Defense",
+        "Referenced when explaining cyber workforce qualification requirements for government contractors. <a href=\"https://public.cyber.mil/wid/dod8140/\" target=\"_blank\" rel=\"noopener\">public.cyber.mil</a>"
+      ],
+      [
+        "Linux",
+        "Linus Torvalds",
+        "The kernel every hands-on lab in this course ultimately runs on, registered trademark in the US and other countries."
+      ]
+    ],
+    "note": {
+      "kind": "info",
+      "title": "Trademark notice",
+      "text": "All trademarks, service marks, and trade names are the property of their respective owners. Their use here is nominative — to identify the products this course teaches you to use — and does not imply any affiliation with or endorsement by the trademark holders. If you own one of these marks and want the wording changed, <a href=\"https://github.com/learnlinuxforwork/securityplusv8/issues\" target=\"_blank\" rel=\"noopener\">open an issue</a> and it will be fixed."
+    }
+  }
+}

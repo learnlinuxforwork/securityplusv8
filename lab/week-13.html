@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 13: Governance, Risk, and Third-Party Risk — CompTIA Security+ SY0-801 V8 Course</title>
+<meta name="description" content="The first GRC week — the paperwork that decides what "secure enough" means for a given organization.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .lab-wrap { max-width: 860px; margin: 0 auto; padding: 30px 22px 90px; }
+  .lab-back { font-size: 13px; color: var(--text-3); display: inline-block; margin-bottom: 18px; }
+  .lab-h { margin-bottom: 22px; }
+  .lab-h h1 { font-size: 27px; letter-spacing: -.02em; margin-bottom: 6px; }
+  .lab-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .step { margin: 30px 0 0; }
+  .step h2 { font-size: 17px; margin-bottom: 6px; }
+  .step > p { color: var(--text-2); font-size: 14px; max-width: 72ch; }
+  .cmd { margin: 14px 0; border: 1px solid var(--border); border-radius: var(--radius);
+          overflow: hidden; background: var(--bg-elev); box-shadow: var(--shadow); }
+  .cmd__t { font-size: 12.5px; font-weight: 600; color: var(--text-2);
+             padding: 9px 14px; background: var(--bg-sunken); border-bottom: 1px solid var(--border); }
+  .cmd pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--mono);
+              font-size: 12.8px; line-height: 1.65; color: var(--text); }
+  .lab-nav { display: flex; justify-content: space-between; gap: 12px;
+              margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border); }
+  ol.verify { font-family: var(--mono); font-size: 12.8px; }
+  ol.verify li { margin-bottom: 6px; color: var(--text-2); }
+  @media print { .lab-back, .lab-nav, .header { display: none !important; } }
+</style>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("secplus.theme.v1");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="../index.html">
+    <span class="brand__mark brand__mark--logo"><img src="../assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="24" height="24"></span>
+    <span class="brand__text">
+      <span class="brand__title">Security+ V8 Course</span>
+      <span class="brand__sub">From Learn Linux For Work · Lab 13 of 15</span>
+    </span>
+  </a>
+  <span class="header__spacer"></span>
+  <button class="btn btn--icon" data-theme-toggle title="Toggle dark / light mode" aria-label="Toggle dark or light mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="1.5" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22.5"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="1.5" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22.5" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+  </button>
+</header>
+
+<div class="lab-wrap">
+  <a class="lab-back" href="../index.html#week-13">&larr; Back to Week 13</a>
+
+  <div class="lab-h">
+    <div class="section__eyebrow">Lab guide 13</div>
+    <h1>Governance, Risk, and Third-Party Risk</h1>
+    <p style="color:var(--text-2);font-size:14.5px;max-width:74ch">The first GRC week — the paperwork that decides what "secure enough" means for a given organization.</p>
+    <div class="lab-meta">
+      <span class="chip chip--accent">8-10 hours</span>
+      <span class="chip">Week 12 complete</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout__title">Before you start</div><ul><li>No lab VM needed this week — this is a reading and worksheet week, and that's intentional, not a shortcut</li></ul></div>
+
+  <div class="step"><h2>1. Guideline, standard, procedure, policy — four different documents</h2><p>A <strong>guideline</strong> is a recommendation ("consider doing X"). A <strong>standard</strong> is a mandatory baseline ("passwords must be 12+ characters"). A <strong>procedure</strong> is the exact steps to do something (a runbook). A <strong>policy</strong> is the organization's stated position and requirement ("all remote access requires MFA"). Mixing these up in conversation is common; mixing them up on the exam costs you points on scenario questions that hinge on exactly this distinction.</p></div><div class="step"><h2>2. Read a real AUP and BYOD policy</h2><p>Find a publicly posted Acceptable Use Policy or BYOD policy from any organization (many universities and companies publish these). Identify three concrete, enforceable requirements in it — not vague statements, but things you could actually check compliance against (e.g. "personal devices must have a PIN or biometric lock enabled" is checkable; "be responsible with company data" is not).</p></div><div class="step"><h2>3. Build a risk register entry</h2><p>The actual artifact a security team maintains, not just a concept.</p><div class="cmd"><div class="cmd__t">A minimal risk register row for a real risk on your own lab</div><pre>cat > ~/secplus-lab/risk-register.txt <<'EOF'
+Asset: secure-target SSH access
+Risk: Brute-force credential attack against exposed SSH
+Likelihood: Medium
+Impact: High
+Owner: [your name]
+Current mitigation: firewalld rate-limiting, key-based auth only
+Residual risk: Low
+EOF
+cat ~/secplus-lab/risk-register.txt</pre></div></div><div class="step"><h2>4. Calculate ALE from a scenario</h2><p>Single loss expectancy times annualized rate of occurrence, worked from real numbers.</p><div class="cmd"><div class="cmd__t">Given: a ransomware incident costs an estimated $50,000 (SLE) and historically happens about once every 4 years (ARO = 0.25)</div><pre>python3 -c "SLE=50000; ARO=0.25; print('ALE =', SLE*ARO)"
+# ALE = $12,500/year — this is the number that justifies (or doesn't) a given year's security spend against this specific risk</pre></div></div><div class="step"><h2>5. Risk treatment: four options, one scenario each</h2><p><strong>Transferring</strong> risk: buying cyber insurance. <strong>Accepting</strong> risk: the cost of the control exceeds the cost of the risk, so you document the decision and move on. <strong>Avoiding</strong> risk: discontinuing the risky activity entirely (e.g. not collecting data you don't need). <strong>Mitigating</strong> risk: implementing a control that reduces likelihood or impact. Every real risk decision is one of these four — including "we'll deal with it later," which is actually acceptance, whether anyone admits it or not.</p></div><div class="step"><h2>6. Vendor agreements, matched to purpose</h2><p><strong>RFP/RFI/RFQ</strong>: the vendor selection process, in that rough order (information, then proposal, then quote). <strong>SLA</strong>: defines the service level a vendor commits to (uptime, response time). <strong>MOU/MOA</strong>: a non-binding or lightly-binding statement of intent between parties. <strong>NDA</strong>: protects confidential information shared during the relationship. <strong>MSA</strong>: the master contract terms that govern the whole relationship. <strong>SOW</strong>: defines the specific work for a specific engagement under that MSA. Getting these right on the exam usually means matching the RIGHT document to a one-sentence scenario.</p></div>
+
+  <div class="step"><h2>Check your work</h2><p>Run these before you consider the lab finished.</p><ol class="verify"><li>risk-register.txt exists with all six fields filled in for a real risk</li><li>Your ALE calculation matches SLE × ARO exactly</li><li>You can name the correct document type (SLA/MOU/NDA/MSA/SOW) for five different one-sentence vendor scenarios</li><li>You identified three concrete, checkable requirements in a real AUP or BYOD policy</li></ol></div>
+
+  
+
+  <div class="lab-nav">
+    <span><a class="btn" href="week-12.html">&larr; Lab 12</a></span>
+    <span><a class="btn btn--primary" href="week-14.html">Lab 14 &rarr;</a></span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><strong>CompTIA Security+ SY0-801 V8 Course</strong> — securityplusv8.learnlinuxforwork.com<br>
+    Written by Shea. Licensed under the
+    <a href="https://learnlinuxforwork.com/license" target="_blank" rel="noopener noreferrer">GNU AGPL v3.0 or later</a>.</div>
+    <div class="footer__links">
+      <a href="../index.html">Course home</a>
+      <a href="https://www.learnlinuxforwork.com" target="_blank" rel="noopener noreferrer">Linux training</a>
+      <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener noreferrer">CompTIA objectives</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/lab.js"></script>
+</body>
+</html>
