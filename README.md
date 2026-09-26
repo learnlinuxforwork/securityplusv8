@@ -2,28 +2,114 @@
 
 <img src="https://free.learnlinuxforwork.com/assets/img/ST-Brain-Logo.png" alt="Shea's Tech" width="120">
 
-# CompTIA Security+ SY0-801 V8 Course
+# CompTIA Security+ SY0-801 V8
 
-### Zero to CompTIA Security+
+### Exam Objectives Reference and Study Course
 
-**Fifteen weeks. Fifteen hands-on lab guides. Every domain, every objective.**
-Built directly from CompTIA's official SY0-801 V8 Exam Objectives document.
+**Every domain. Every sub-objective. Built directly from CompTIA's official
+SY0-801 V8 Exam Objectives document (version 1.4).**
 
-[**securityplusv8.learnlinuxforwork.com**](https://securityplusv8.learnlinuxforwork.com) · [Why I built this](https://securityplusv8.learnlinuxforwork.com/#story)
+[**securityplusv8.learnlinuxforwork.com**](https://securityplusv8.learnlinuxforwork.com)
 
 [![Exam](https://img.shields.io/badge/exam-SY0--801%20V8-b45309?style=flat-square)](https://www.comptia.org/certifications/security)
-[![License](https://img.shields.io/badge/license-AGPL--3.0--or--later-b45309?style=flat-square)](https://learnlinuxforwork.com/license)
+[![Release](https://img.shields.io/badge/release-0.01-b45309?style=flat-square)](https://github.com/learnlinuxforwork/securityplusv8/releases)
+[![License](https://img.shields.io/badge/license-AGPL--3.0--or--later-b45309?style=flat-square)](https://learnlinuxforwork.com/license/)
 [![Cost](https://img.shields.io/badge/cost-%240-b45309?style=flat-square)](#what-it-costs)
-[![Tracking](https://img.shields.io/badge/tracking-none-b45309?style=flat-square)](#features)
-[![PRs](https://img.shields.io/badge/PRs-welcome-b45309?style=flat-square)](#contributing)
-
-<br>
-
-| 15 | 15 | 5 | $0 |
-|:--:|:--:|:--:|:--:|
-| **weeks** | **lab guides** | **exam domains** | **to start** |
 
 </div>
+
+---
+
+## The exam
+
+| | |
+|:--|:--|
+| **Exam code** | SY0-801 V8 |
+| **Format** | Multiple-choice and performance-based |
+| **Number of questions** | TBD — not yet published by CompTIA as of this writing |
+| **Length of test** | TBD — not yet published by CompTIA as of this writing |
+| **Passing score** | 750 (on a scale of 100–900) |
+| **Recommended experience** | Security administrator with two years of hands-on experience |
+| **Accreditation** | ANAB-accredited to ISO/IEC 17024 |
+| **Prerequisites** | None required |
+| **Objectives source** | [CompTIA Security+](https://www.comptia.org/certifications/security), Exam Objectives Document v1.4 |
+
+CompTIA's own objectives document was still in **draft** at the time this repository
+was built — question count and test length were listed as "TBD," meaning SY0-801 had
+not fully launched. The five domains, their published weightings, and all 27
+sub-objectives below come directly from that document and are not expected to change.
+
+---
+
+## Exam domains and objectives
+
+| Domain | Weight |
+|:--|:--:|
+| 1.0 General Security Concepts | 16% |
+| 2.0 Threats, Vulnerabilities, and Attacks | 24% |
+| 3.0 Security Architecture | 19% |
+| 4.0 Security Operations | 27% |
+| 5.0 Security Program Management and Oversight | 14% |
+
+<details>
+<summary><strong>1.0 General Security Concepts (16%)</strong></summary>
+
+- 1.1 Explain security concepts and controls
+- 1.2 Demonstrate the impact of change management processes on security
+- 1.3 Explain the importance of using appropriate cryptographic solutions
+
+</details>
+
+<details>
+<summary><strong>2.0 Threats, Vulnerabilities, and Attacks (24%)</strong></summary>
+
+- 2.1 Explain characteristics of threats and vulnerabilities
+- 2.2 Describe common threat actors and motivations
+- 2.3 Describe threat vectors and sources
+- 2.4 Explain types of vulnerabilities and attack surfaces
+- 2.5 Given a scenario, analyze indicators of malicious activity
+- 2.6 Summarize threats and vulnerabilities associated with artificial intelligence (AI) usage
+
+</details>
+
+<details>
+<summary><strong>3.0 Security Architecture (19%)</strong></summary>
+
+- 3.1 Compare and contrast security implications of different architecture models
+- 3.2 Given a scenario, manage the security architecture to best protect the infrastructure
+- 3.3 Summarize concepts and strategies used to protect data
+- 3.4 Explain the importance of resilience and recovery in security architecture
+
+</details>
+
+<details>
+<summary><strong>4.0 Security Operations (27%)</strong></summary>
+
+- 4.1 Given a scenario, apply mitigating controls, techniques, and solutions to secure the environment
+- 4.2 Explain the security implications of proper hardware, software, and data asset management
+- 4.3 Given a scenario, perform tasks associated with vulnerability management
+- 4.4 Explain security alerting and monitoring concepts and tools
+- 4.5 Given a scenario, apply concepts related to identity and access management
+- 4.6 Given a scenario, apply automation and orchestration solutions to secure operations
+- 4.7 Summarize concepts associated with incident response activities
+- 4.8 Given a scenario, use data, artifacts and sources to support a security investigation
+
+</details>
+
+<details>
+<summary><strong>5.0 Security Program Management and Oversight (14%)</strong></summary>
+
+- 5.1 Explain the importance of governance, risk, and compliance artifacts
+- 5.2 Explain the impact of risk management processes on the security of the organization
+- 5.3 Explain the assessment and management processes associated with third-party risk
+- 5.4 Summarize elements of effective security compliance
+- 5.5 Explain concepts associated with audit and assessment activities
+- 5.6 Given a scenario, apply security awareness concepts to improve organizational security
+
+</details>
+
+The full [Exam Objective Coverage Map](https://securityplusv8.learnlinuxforwork.com/#coverage-map)
+maps every sub-objective above to the study material and lab guide that covers it.
 
 ---
 
@@ -31,74 +117,20 @@ Built directly from CompTIA's official SY0-801 V8 Exam Objectives document.
 
 ```bash
 git clone https://github.com/learnlinuxforwork/securityplusv8.git && cd securityplusv8
-python3 -m http.server 8000       # read the course at localhost:8000
+python3 -m http.server 8000       # read it at localhost:8000
 ```
 
-Then open [Lab Guide 1](lab/week-01.html).
+Or read it live at [securityplusv8.learnlinuxforwork.com](https://securityplusv8.learnlinuxforwork.com).
 
 ---
 
-## Why this course is longer than its siblings
+## What's here
 
-Security+ isn't a single-product exam. CompTIA's own SY0-801 V8 objectives document
-spans **five domains and 27 numbered sub-objectives** — general security concepts,
-threats/vulnerabilities/attacks, security architecture, security operations, and
-governance/risk/compliance. That's genuinely broader than [RHCSA](https://rhcsa.learnlinuxforwork.com)
-or [LFCS](https://lfcs.learnlinuxforwork.com), which is why this course runs 15
-weeks instead of 12.
-
-At the time this course was written, CompTIA's own objectives document (version 1.4)
-listed the exam's **question count and test length as "TBD"** — SY0-801 had not
-fully launched. Everything else — the five domains, their published weightings, and
-every sub-objective — comes straight from that document.
-
----
-
-## Ethics, once, clearly
-
-Every scanning, exploitation, or attack-simulation step in this course's labs runs
-on VMs you build yourself, on a network isolated from the internet and from anyone
-else's systems. Running the same tools against anything else — without explicit
-written authorization — is illegal in most jurisdictions. This isn't a formality.
-
----
-
-## What's inside
-
-**Fourteen sections**, built to the same shape as the
-[RHCSA](https://rhcsa.learnlinuxforwork.com), [LFCS](https://lfcs.learnlinuxforwork.com),
-[LPI Linux Essentials](https://lpi.learnlinuxforwork.com), and
-[AWS DevOps](https://free.learnlinuxforwork.com) courses:
-
-| # | Section | What it gives you |
-|:--|:--|:--|
-| 01 | How This Course Works | Pacing options, the 50/35/15 rhythm |
-| 02 | What CompTIA Security+ V8 SY0-801 Actually Is | Format, all 5 domains with published weightings |
-| 03 | Build Your Home Lab | Two VMs — secure-target and kali-tools |
-| 04 | No Machine to Install On? Rent One | A single cloud instance option |
-| 05 | The Certification Ladder | CySA+, RHCSA (cloud/DevOps path), LFCS, PenTest+ |
-| 06 | Exam Objective Coverage Map | All 27 sub-objectives mapped to weeks |
-| 07 | The 15-Week Plan | Checkable tasks, progress saved in your browser |
-| 08 | Lab Guides | Fifteen standalone guides |
-| 09 | Employer Verification | An optional paid track for a certificate |
-| 10 | Core Resource List | CompTIA, MITRE ATT&CK, NIST, OWASP, and more |
-| 11 | Estimated Costs | Honest numbers |
-| 12 | Exam Day | Habits and the morning-of checklist |
-| 13 | Why I Built This Guide | The reason this is free |
-| 14 | Credits and Trademarks | CompTIA, Kali/OffSec, MITRE, NIST, and everyone else |
-
----
-
-## The five domains
-
-| Domain | Weight | Weeks |
-|:--|:--:|:--|
-| 1.0 General Security Concepts | 16% | 1–2 |
-| 2.0 Threats, Vulnerabilities, and Attacks | 24% | 3–6 |
-| 3.0 Security Architecture | 19% | 7–8 |
-| 4.0 Security Operations | 27% | 9–12 |
-| 5.0 Security Program Management and Oversight | 14% | 13–14 |
-| Mock exam, remediation, exam day | — | 15 |
+A 15-week, week-by-week study path built around the objectives above — one lab guide
+per week, real hands-on tasks run only against isolated, self-owned lab VMs, plus a
+coverage map, certification ladder (CySA+ V8, RHCSA, LFCS, PenTest+), resources, and
+exam-day guidance. Full structure and section list: see the
+[live site's sidebar](https://securityplusv8.learnlinuxforwork.com).
 
 ---
 
@@ -106,39 +138,24 @@ written authorization — is illegal in most jurisdictions. This isn't a formali
 
 | Item | Estimate |
 |:--|:--|
-| This course and all 15 lab guides | **$0** |
-| Rocky Linux / Ubuntu Server + Kali Linux | **$0** |
-| Two lab VMs on hardware you already own | **$0** |
+| This repository and all 15 lab guides | **$0** |
 | [CompTIA Security+ exam (SY0-801 V8)](https://www.comptia.org/certifications/security) | ~$404 (check CompTIA's current pricing) |
-| Cloud instance, if you can't install locally | ~$6/month |
 
 ---
 
-## Deployment
+## License, privacy, and terms
 
-Push to `main` → [`.github/workflows/pages.yml`](.github/workflows/pages.yml) validates
-`data/securityplus.json`, confirms all fifteen lab guides exist, runs the scope check,
-and deploys to GitHub Pages at
-[securityplusv8.learnlinuxforwork.com](https://securityplusv8.learnlinuxforwork.com).
+All original content in this repository is licensed under the
+**[GNU AGPL v3.0 or later](https://learnlinuxforwork.com/license/)** by Shea's Tech.
+See also the local [LICENSE](LICENSE) file.
 
-First-time setup:
+Use of this repository and the associated site is subject to Shea's Tech's
+[Privacy Policy](https://learnlinuxforwork.com/privacy/) and
+[Terms and Conditions](https://learnlinuxforwork.com/terms/).
 
-1. **Settings → Pages → Source:** GitHub Actions
-2. **Settings → Pages → Custom domain:** `securityplusv8.learnlinuxforwork.com`, then tick *Enforce HTTPS*
-3. DNS (managed in Squarespace for this domain): add a **CNAME** record — host `securityplusv8`, pointing to `learnlinuxforwork.github.io`
-
-The [`CNAME`](CNAME) file keeps the domain set across deploys — don't delete it.
-
----
-
-## Content and licensing
-
-All course text and lab guides are **original work**, written for this repository,
-built directly from
-[CompTIA's SY0-801 V8 Exam Objectives](https://www.comptia.org/certifications/security)
-(version 1.4) — the authoritative statement of what the exam covers.
-
-Licensed under the **[GNU AGPL v3.0 or later](https://learnlinuxforwork.com/license)**. See also [LICENSE](LICENSE). Free forever.
+CompTIA's Exam Objectives document — including domain names, sub-objective wording,
+and the acronym list referenced throughout — is © CompTIA, Inc., used here for
+reference and study purposes only. See [Credits and Trademarks](#credits-and-trademarks).
 
 ---
 
@@ -146,7 +163,7 @@ Licensed under the **[GNU AGPL v3.0 or later](https://learnlinuxforwork.com/lice
 
 Not affiliated with, sponsored by, endorsed by, or certified by CompTIA, Inc. or any
 other organization named here. Full credit table in
-[section 14](https://securityplusv8.learnlinuxforwork.com/#credits).
+[section 14 of the live site](https://securityplusv8.learnlinuxforwork.com/#credits).
 
 If you own one of these marks and want the wording changed,
 [open an issue](https://github.com/learnlinuxforwork/securityplusv8/issues).
@@ -165,7 +182,7 @@ If you own one of these marks and want the wording changed,
 
 <br>
 
-Built by **Shea** · [Shea's Tech](https://www.sheastech.io) · [LinkedIn](https://www.linkedin.com/in/sheastech/) · [YouTube](https://www.youtube.com/@sheastech?sub_confirmation=1)
+Maintained by **sheastech** · [Shea's Tech](https://www.sheastech.io) · [LinkedIn](https://www.linkedin.com/in/sheastech/) · [YouTube](https://www.youtube.com/@sheastech?sub_confirmation=1)
 
 *If anything here is wrong, report it and we'll fix it.*
 
